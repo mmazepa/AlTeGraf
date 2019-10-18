@@ -24,26 +24,37 @@ public class VertexManager {
       h.clearScreen();
   }
 
-  public static void getVertexDegree(ArrayList<ArrayList<Integer>> matrix, int vertex) {
-      vertex = vertex - 1;
+  public static int getVertexDegree(ArrayList<ArrayList<Integer>> matrix, int vertex) {
       int degree = 0;
       for (int i = 0; i < matrix.get(vertex).size(); i++) {
           degree = degree + matrix.get(vertex).get(i);
       }
-      System.out.println("   Stopień wierzchołka " + (vertex+1) + ": " + degree);
-      System.out.print("\n");
+      return degree;
+  }
+
+  public static int getMaxDegree(ArrayList<ArrayList<Integer>> matrix) {
+    int max = 0;
+    for (int i = 0; i < matrix.size(); i++) {
+        for (int j = 0; j < matrix.size(); j++) {
+            if (matrix.get(i).get(j) > max) max = matrix.get(i).get(j);
+        }
+    }
+    return max;
+  }
+
+  public static int getMinDegree(ArrayList<ArrayList<Integer>> matrix) {
+    int min = getMaxDegree(matrix);
+    for (int i = 0; i < matrix.size(); i++) {
+        for (int j = 0; j < matrix.size(); j++) {
+            if (matrix.get(i).get(j) < min) min = matrix.get(i).get(j);
+        }
+    }
+    return min;
   }
 
   public static void getMinAndMaxDegree(ArrayList<ArrayList<Integer>> matrix) {
-      int min = 0;
-      int max = 0;
-
-      for (int i = 0; i < matrix.size(); i++) {
-          for (int j = 0; j < matrix.size(); j++) {
-              if (matrix.get(i).get(j) < min) min = matrix.get(i).get(j);
-              if (matrix.get(i).get(j) > max) max = matrix.get(i).get(j);
-          }
-      }
+      int min = getMinDegree(matrix);
+      int max = getMaxDegree(matrix);
 
       System.out.println("   Min stopień grafu: " + min);
       System.out.println("   Max stopień grafu: " + max);
@@ -70,10 +81,9 @@ public class VertexManager {
       for (ArrayList<Integer> row : matrix) {
           series.add(h.sumArray(row));
       }
-      System.out.println("   Ciąg stopni (oryginalny):");
-      System.out.println("      " + series);
+
       Collections.sort(series, Collections.reverseOrder());
-      System.out.println("   Ciąg stopni (posortowany):");
+      System.out.println("   Ciąg stopni wierzchołków:");
       System.out.println("      " + series);
       System.out.print("\n");
   }

@@ -3,6 +3,8 @@ import java.util.Scanner;
 
 public class Helpers {
 
+  public static VertexManager vm = new VertexManager();
+
   public static void clearScreen() {
       System.out.print("\033[H\033[2J");
       //System.out.flush();
@@ -27,11 +29,27 @@ public class Helpers {
   }
 
   public static void displayMatrix(ArrayList<ArrayList<Integer>> matrix) {
+      System.out.print("      │");
       for (int i = 0; i < matrix.size(); i++) {
-          System.out.print("   ");
+        String output = String.format("%2s", (i+1));
+        System.out.print(output + " ");
+      }
+      System.out.print("\n");
+
+      System.out.print("   ───┼");
+      for (int i = 0; i < matrix.size(); i++) {
+        System.out.print("───");
+      }
+      System.out.print("\n");
+
+      for (int i = 0; i < matrix.size(); i++) {
+          String output = String.format("%2s", (i+1));
+          System.out.print("   " + output + " │");
           for (int j = 0; j < matrix.get(i).size(); j++) {
-              System.out.print(matrix.get(i).get(j) + " ");
+              output = String.format("%2s", matrix.get(i).get(j));
+              System.out.print(output + " ");
           }
+          System.out.print("   (" + vm.getVertexDegree(matrix, i) + ")");
           System.out.print("\n");
       }
       System.out.print("\n");

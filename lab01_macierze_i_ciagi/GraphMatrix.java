@@ -27,9 +27,6 @@ public class GraphMatrix {
         while (true) {
             h.displayMatrix(matrix);
 
-            vm.getVertexDegree(matrix, 1);
-            vm.getVertexDegree(matrix, 2);
-
             vm.getMinAndMaxDegree(matrix);
             vm.getEvenOrOdd(matrix);
             vm.getDegreeSeries(matrix);
