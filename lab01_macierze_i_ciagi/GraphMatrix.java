@@ -17,6 +17,33 @@ public class GraphMatrix {
         return matrix;
     }
 
+    public static void isomorphicCycle(ArrayList<ArrayList<Integer>> matrix) {
+      boolean icycle = false;
+      ArrayList<String> icycles = new ArrayList<String>();
+
+      for (int i = 0; i < matrix.size(); i++) {
+        for (int j = 0; j < matrix.size(); j++) {
+          for (int k = 0; k < matrix.size(); k++) {
+            boolean v1_v2 = matrix.get(i).get(j) > 0;
+            boolean v2_v3 = matrix.get(j).get(k) > 0;
+            boolean v3_v1 = matrix.get(k).get(i) > 0;
+
+            icycle = v1_v2 && v2_v3 && v3_v1;
+            if (icycle) icycles.add((i+1) + " " + (j+1) + " " + (k+1));
+          }
+        }
+      }
+
+      System.out.print("   Cykl izomorficzny: ");
+      System.out.print(!icycles.isEmpty() ? "TAK" : "NIE");
+      System.out.print("\n");
+      for (int i = 0; i < icycles.size(); i++) {
+        if (i%5 == 0) System.out.print("\n   ");
+        System.out.print("   " + icycles.get(i));
+      }
+      System.out.print("\n\n");
+    }
+
     public static void main(String args[]) {
         h.clearScreen();
         System.out.print("\n");
@@ -30,6 +57,8 @@ public class GraphMatrix {
             vm.getMinAndMaxDegree(matrix);
             vm.getEvenOrOdd(matrix);
             vm.getDegreeSeries(matrix);
+
+            isomorphicCycle(matrix);
 
             h.displayMenu();
             int choice = h.getNumberFromUser("Wybór: ");
