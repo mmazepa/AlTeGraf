@@ -2,20 +2,10 @@ import java.util.ArrayList;
 
 public class GraphMatrix {
 
+    public static FileManager fm = new FileManager();
     public static VertexManager vm = new VertexManager();
     public static EdgeManager em = new EdgeManager();
     public static Helpers h = new Helpers();
-
-    public static ArrayList<ArrayList<Integer>> prepareNewMatrix(int matrixSize) {
-        ArrayList<ArrayList<Integer>> matrix = new ArrayList<ArrayList<Integer>>();
-        for (int i = 0; i < matrixSize; i++) {
-            matrix.add(new ArrayList<Integer>());
-            for (int j = 0; j < matrixSize; j++) {
-                matrix.get(i).add(0);
-            }
-        }
-        return matrix;
-    }
 
     public static void isomorphicCycle(ArrayList<ArrayList<Integer>> matrix) {
       boolean icycle = false;
@@ -49,9 +39,14 @@ public class GraphMatrix {
         System.out.print("\n");
 
         ArrayList<ArrayList<Integer>> matrix = new ArrayList<ArrayList<Integer>>();
-        matrix = prepareNewMatrix(10);
+        if (args.length > 0) {
+          matrix = fm.prepareNewMatrix(args[0]);
+        } else {
+          h.exitOnPurpose("Nie podano pliku z grafem wejściowym.");
+        }
 
         while (true) {
+            System.out.print("\n");
             h.displayMatrix(matrix);
 
             vm.getMinAndMaxDegree(matrix);
@@ -96,7 +91,6 @@ public class GraphMatrix {
             }
 
             h.clearScreen();
-            System.out.print("\n");
         }
     }
 }

@@ -21,6 +21,15 @@ public class Helpers {
       System.out.print("\n");
   }
 
+  public static void log(String type, String text) {
+    System.out.println("[" + type + "]: " + text);
+  }
+
+  public static void exitOnPurpose(String text) {
+    log("exit", text);
+    System.exit(0);
+  }
+
   public static int getNumberFromUser(String textToDisplay) {
       Scanner in = new Scanner(System.in);
       System.out.print("   " + textToDisplay);
