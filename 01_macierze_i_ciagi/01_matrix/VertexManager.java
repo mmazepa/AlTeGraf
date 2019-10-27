@@ -24,9 +24,7 @@ public class VertexManager {
 
   public static int getVertexDegree(ArrayList<ArrayList<Integer>> matrix, int vertex) {
     int degree = 0;
-    for (int i = 0; i < matrix.get(vertex).size(); i++) {
-      degree = degree + matrix.get(vertex).get(i);
-    }
+    degree = h.sumArray(matrix.get(vertex));
     return degree;
   }
 
