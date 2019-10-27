@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class GraphMatrix {
 
@@ -7,19 +8,37 @@ public class GraphMatrix {
   public static EdgeManager em = new EdgeManager();
   public static Helpers h = new Helpers();
 
+  public static Boolean checkCycle(ArrayList<ArrayList<Integer>> matrix, int v1, int v2, int v3) {
+    Boolean v1_v2 = matrix.get(v1).get(v2) > 0;
+    Boolean v2_v3 = matrix.get(v2).get(v3) > 0;
+    Boolean v3_v1 = matrix.get(v3).get(v1) > 0;
+
+    Boolean icycle = v1_v2 && v2_v3 && v3_v1;
+    Boolean diff = ((v1+1) != (v2+1)) && ((v2+1) != (v3+1)) && ((v3+1) != (v1+1));
+
+    return icycle && diff;
+  }
+
+  public static ArrayList<Integer> prepareCycle(int... values) {
+    ArrayList<Integer> cycleList = new ArrayList<Integer>();
+    for (int value : values) cycleList.add(value);
+    return cycleList;
+  }
+
   public static void isomorphicCycle(ArrayList<ArrayList<Integer>> matrix) {
-    boolean icycle = false;
     ArrayList<String> icycles = new ArrayList<String>();
 
     for (int i = 0; i < matrix.size(); i++) {
       for (int j = 0; j < matrix.size(); j++) {
         for (int k = 0; k < matrix.size(); k++) {
-          boolean v1_v2 = matrix.get(i).get(j) > 0;
-          boolean v2_v3 = matrix.get(j).get(k) > 0;
-          boolean v3_v1 = matrix.get(k).get(i) > 0;
+          if (checkCycle(matrix, i, j, k)) {
+            ArrayList<Integer> cycleList = new ArrayList<Integer>();
+            cycleList = prepareCycle((i+1), (j+1), (k+1));
+            Collections.sort(cycleList);
 
-          icycle = v1_v2 && v2_v3 && v3_v1;
-          if (icycle) icycles.add((i+1) + " " + (j+1) + " " + (k+1));
+            String cycle = String.format("%2d %2d %2d", cycleList.get(0), cycleList.get(1), cycleList.get(2));
+            if (!icycles.contains(cycle)) icycles.add(cycle);
+          }
         }
       }
     }
@@ -27,9 +46,10 @@ public class GraphMatrix {
     System.out.print("   Cykl izomorficzny: ");
     System.out.print(!icycles.isEmpty() ? "TAK" : "NIE");
     System.out.print("\n");
+
     for (int i = 0; i < icycles.size(); i++) {
-      if (i%5 == 0) System.out.print("\n   ");
-      System.out.print("   " + icycles.get(i));
+      if (i%5 == 0) System.out.print("\n");
+      System.out.print("   « " + icycles.get(i) + " »");
     }
     System.out.print("\n\n");
   }
