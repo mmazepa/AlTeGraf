@@ -16,7 +16,6 @@ public class VertexManager {
   }
 
   public static void removeVertex(ArrayList<ArrayList<Integer>> matrix, int vertex) {
-    System.out.println(vertex + ", " + matrix.size());
     if (vertex <= matrix.size() && vertex > 0) {
       vertex = vertex - 1;
       for (ArrayList<Integer> row : matrix)
@@ -67,8 +66,8 @@ public class VertexManager {
     int even = 0;
     int odd = 0;
 
-    for (ArrayList<Integer> row : matrix) {
-      int degree = h.sumArray(row);
+    for (int i = 0; i < matrix.size(); i++) {
+      int degree = getVertexDegree(matrix, i);
       if (degree%2 == 0) even++;
       else odd++;
     }

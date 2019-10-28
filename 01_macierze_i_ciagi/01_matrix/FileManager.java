@@ -32,7 +32,7 @@ public class FileManager {
           String[] parts = line.split("->");
           em.addEdge(matrix, Integer.parseInt(parts[0]), Integer.parseInt(parts[1]));
         }
-          counter++;
+        counter++;
       }
     } catch (Exception e) {
       // e.printStackTrace();
