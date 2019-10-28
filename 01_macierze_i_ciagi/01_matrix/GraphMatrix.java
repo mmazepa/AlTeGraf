@@ -43,8 +43,9 @@ public class GraphMatrix {
       }
     }
 
-    System.out.print("   Cykl izomorficzny: ");
-    System.out.print(!icycles.isEmpty() ? "TAK" : "NIE");
+    System.out.println("   Podgraf izomorficzny do cyklu C3:");
+    System.out.print("      ");
+    System.out.print(!icycles.isEmpty() ? "TAK!" : "NIE!");
     System.out.print("\n");
 
     for (int i = 0; i < icycles.size(); i++) {

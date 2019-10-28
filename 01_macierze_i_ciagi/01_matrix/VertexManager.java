@@ -35,17 +35,20 @@ public class VertexManager {
   public static int getMaxDegree(ArrayList<ArrayList<Integer>> matrix) {
     int max = 0;
     for (int i = 0; i < matrix.size(); i++) {
-      if (h.sumArray(matrix.get(i)) > max) max = h.sumArray(matrix.get(i));
+      if (getVertexDegree(matrix, i) > max) max = getVertexDegree(matrix, i);
     }
     return max;
   }
 
   public static int getMinDegree(ArrayList<ArrayList<Integer>> matrix) {
     int min = 0;
-    if (matrix.size() > 0) min = h.sumArray(matrix.get(0));
+
+    if (matrix.size() > 0)
+      min = getVertexDegree(matrix, 0);
+
     if (matrix.size() > 1) {
       for (int i = 1; i < matrix.size(); i++) {
-        if (h.sumArray(matrix.get(i)) < min) min = h.sumArray(matrix.get(i));
+        if (getVertexDegree(matrix, i) < min) min = getVertexDegree(matrix, i);
       }
     }
     return min;
@@ -77,8 +80,8 @@ public class VertexManager {
 
   public static void getDegreeSeries(ArrayList<ArrayList<Integer>> matrix) {
     ArrayList<Integer> series = new ArrayList<Integer>();
-    for (ArrayList<Integer> row : matrix) {
-      series.add(h.sumArray(row));
+    for (int i = 0; i < matrix.size(); i++) {
+      series.add(getVertexDegree(matrix, i));
     }
 
     Collections.sort(series, Collections.reverseOrder());
