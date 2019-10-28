@@ -16,9 +16,13 @@ public class VertexManager {
   }
 
   public static void removeVertex(ArrayList<ArrayList<Integer>> matrix, int vertex) {
-    vertex = vertex - 1;
-    for (ArrayList<Integer> row : matrix) row.remove(vertex);
-    matrix.remove(vertex);
+    System.out.println(vertex + ", " + matrix.size());
+    if (vertex <= matrix.size() && vertex > 0) {
+      vertex = vertex - 1;
+      for (ArrayList<Integer> row : matrix)
+        row.remove(vertex);
+      matrix.remove(vertex);
+    }
     h.clearScreen();
   }
 
