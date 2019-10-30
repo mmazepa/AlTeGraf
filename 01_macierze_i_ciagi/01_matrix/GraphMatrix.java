@@ -14,7 +14,7 @@ public class GraphMatrix {
     Boolean v3_v1 = matrix.get(v3).get(v1) > 0;
 
     Boolean icycle = v1_v2 && v2_v3 && v3_v1;
-    Boolean diff = ((v1+1) != (v2+1)) && ((v2+1) != (v3+1)) && ((v3+1) != (v1+1));
+    Boolean diff = (v1 != v2) && (v2 != v3) && (v3 != v1);
 
     return icycle && diff;
   }

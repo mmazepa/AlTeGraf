@@ -14,14 +14,10 @@ public class EdgeManager {
     if (isInsideMatrix(matrix, from, to)) {
       from = from - 1;
       to = to - 1;
-      int val1 = matrix.get(from).get(to);
-      int val2 = matrix.get(to).get(from);
 
       if (from != to) {
-        matrix.get(from).set(to, val1+1);
-        matrix.get(to).set(from, val2+1);
-      } else {
-        matrix.get(from).set(from, val1+2);
+        matrix.get(from).set(to, 1);
+        matrix.get(to).set(from, 1);
       }
     }
     h.clearScreen();
@@ -31,16 +27,10 @@ public class EdgeManager {
     if (isInsideMatrix(matrix, from, to)) {
       from = from - 1;
       to = to - 1;
-      int val1 = matrix.get(from).get(to);
-      int val2 = matrix.get(to).get(from);
 
-      if (val1 != 0 && val2 != 0) {
-        if (from != to) {
-          matrix.get(from).set(to, val1-1);
-          matrix.get(to).set(from, val2-1);
-        } else {
-          matrix.get(from).set(to, val1-2);
-        }
+      if (from != to) {
+        matrix.get(from).set(to, 0);
+        matrix.get(to).set(from, 0);
       }
     }
     h.clearScreen();

@@ -36,7 +36,7 @@ public class FileManager {
       }
     } catch (Exception e) {
       // e.printStackTrace();
-      h.exitOnPurpose("Plik \"" + fileName + "\" nie został znaleziony.");
+      h.exitOnPurpose("Plik \"" + fileName + "\": coś poszło nie tak...");
     }
     return matrix;
   }
