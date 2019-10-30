@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class FileManager {
 
+  public static VertexManager vm = new VertexManager();
   public static EdgeManager em = new EdgeManager();
   public static Helpers h = new Helpers();
 
@@ -23,10 +24,7 @@ public class FileManager {
         if (counter == 0) {
           matrixSize = Integer.parseInt(line);
           for (int i = 0; i < matrixSize; i++) {
-            matrix.add(new ArrayList<Integer>());
-            for (int j = 0; j < matrixSize; j++) {
-              matrix.get(i).add(0);
-            }
+            vm.addVertex(matrix);
           }
         } else {
           String[] parts = line.split("->");

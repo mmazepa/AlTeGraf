@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class GraphMatrix {
 
@@ -21,5 +20,25 @@ public class GraphMatrix {
 
     System.out.print("\n");
     h.displayMatrix(matrix);
+
+    ArrayList<String> cycle = new ArrayList<String>();
+    Boolean[] visited = new Boolean[matrix.size()];
+
+    for (int i = 0; i < visited.length; i++) visited[i] = false;
+
+    for (int i = 1; i < matrix.size()+1; i++) {
+      for (int j = 1; j < matrix.size()+1; j++) {
+        if (em.areConnected(matrix, i, j) && !visited[i-1]) {
+          visited[i-1] = true;
+          cycle.add(i + "->" + j);
+          em.removeEdge(matrix, i, j);
+          i = j;
+          j = 0;
+        }
+      }
+    }
+
+    System.out.println("   Cykl: " + cycle);
+    System.out.print("\n");
   }
 }

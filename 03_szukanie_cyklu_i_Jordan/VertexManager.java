@@ -12,17 +12,15 @@ public class VertexManager {
     ArrayList<Integer> newRow = new ArrayList<Integer>();
     for (int i = 0; i < matrix.size()+1; i++) newRow.add(0);
     matrix.add(newRow);
-    h.clearScreen();
   }
 
   public static void removeVertex(ArrayList<ArrayList<Integer>> matrix, int vertex) {
-    if (vertex <= matrix.size() && vertex > 0) {
-      vertex = vertex - 1;
+    if (vertex < matrix.size() && vertex >= 0) {
+      vertex--;
       for (ArrayList<Integer> row : matrix)
         row.remove(vertex);
       matrix.remove(vertex);
     }
-    h.clearScreen();
   }
 
   public static int getVertexDegree(ArrayList<ArrayList<Integer>> matrix, int vertex) {
