@@ -28,4 +28,12 @@ public class VertexManager {
     degree = h.sumArray(matrix.get(vertex));
     return degree;
   }
+
+  public static Boolean allDegreesNotLessThan(ArrayList<ArrayList<Integer>> matrix, int limit) {
+    for (int i = 0; i < matrix.size(); i++) {
+      int degree = getVertexDegree(matrix, i);
+      if (degree < limit) return false;
+    }
+    return true;
+  }
 }
