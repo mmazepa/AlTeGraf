@@ -14,20 +14,6 @@ public class VertexManager {
     matrix.add(newRow);
   }
 
-  public static void removeVertex(ArrayList<ArrayList<Integer>> matrix, int vertex) {
-    if (vertex < matrix.size() && vertex >= 0) {
-      vertex--;
-      // for (ArrayList<Integer> row : matrix)
-      //   row.remove(vertex);
-      // matrix.remove(vertex);
-
-      for (int i = 0; i < matrix.size(); i++) {
-        matrix.get(vertex).set(i, 0);
-        matrix.get(i).set(vertex, 0);
-      }
-    }
-  }
-
   public static int getVertexDegree(ArrayList<ArrayList<Integer>> matrix, int vertex) {
     int degree = 0;
     degree = h.sumArray(matrix.get(vertex));

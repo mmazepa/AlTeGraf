@@ -42,6 +42,32 @@ public class GraphMatrix {
     return dist;
   }
 
+  public static int eccentricity(ArrayList<Integer> vertexDist) {
+    int ecce = 0;
+    for (int i = 0; i < vertexDist.size(); i++) {
+      if (ecce < vertexDist.get(i)) {
+        ecce = vertexDist.get(i);
+      }
+    }
+    return ecce;
+  }
+
+  public static void displayAnswer(ArrayList<Integer> index, ArrayList<Integer> dist) {
+    String indexString = new String();
+    String distString = new String();
+
+    if (index.size() == 1 && dist.size() == 1) {
+      indexString = String.format("%2d", (index.get(0)+1));
+    } else if (index.size() == 2 && dist.size() == 2) {
+      indexString = String.format("%2d %2d", (index.get(0)+1), (index.get(1)+1));
+    }
+
+    distString = String.format("%2d", dist.get(0));
+
+    System.out.println("   Centrum drzewa to: " + indexString);
+    System.out.println("   Najdalszy dystans: " + distString);
+  }
+
   public static void findCenterJordan(ArrayList<ArrayList<Integer>> matrix) {
     ArrayList<ArrayList<Integer>> fullDist = new ArrayList<ArrayList<Integer>>();
 
@@ -53,7 +79,53 @@ public class GraphMatrix {
       }
       fullDist.add(dist);
     }
-    h.displayMatrix(fullDist);
+
+    ArrayList<Integer> eccentricities = new ArrayList<Integer>();
+    for (int i = 0; i < matrix.size(); i++) {
+      eccentricities.add(eccentricity(fullDist.get(i)));
+    }
+    displayEccentricities(eccentricities);
+
+    ArrayList<Integer> minDist = new ArrayList<Integer>();
+    ArrayList<Integer> minIndex = new ArrayList<Integer>();
+
+    minDist.add(Integer.MAX_VALUE);
+    minIndex.add(0);
+
+    for (int i = 0; i < eccentricities.size(); i++) {
+      if (minDist.get(0) >= eccentricities.get(i)) {
+        if (minDist.get(0) > eccentricities.get(i)) {
+          minDist.clear();
+          minIndex.clear();
+        }
+        minDist.add(eccentricities.get(i));
+        minIndex.add(i);
+      }
+    }
+
+    displayAnswer(minIndex, minDist);
+  }
+
+  public static void displayEccentricities(ArrayList<Integer> eccentricities) {
+    System.out.print("    index │");
+    for (int i = 0; i < eccentricities.size(); i++) {
+      String output = String.format("%2s", (i+1));
+      System.out.print(output + " ");
+    }
+    System.out.print("\n");
+
+    System.out.print("   ───────┼");
+    for (int i = 0; i < eccentricities.size(); i++) {
+      System.out.print("───");
+    }
+    System.out.print("\n");
+
+    System.out.print("    ecce  │");
+    for (int i = 0; i < eccentricities.size(); i++) {
+      String output = String.format("%2s", eccentricities.get(i));
+      System.out.print(output + " ");
+    }
+    System.out.print("\n\n");
   }
 
   public static void main(String args[]) {
@@ -70,5 +142,6 @@ public class GraphMatrix {
     h.displayMatrix(matrix);
 
     findCenterJordan(matrix);
+    System.out.print("\n");
   }
 }
