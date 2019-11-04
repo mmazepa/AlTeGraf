@@ -7,7 +7,7 @@ public class GraphMatrix {
   public static FileManager fm = new FileManager();
   public static Helpers h = new Helpers();
 
-  public static ArrayList<Integer> getAdjacentNodes(ArrayList<ArrayList<Integer>> matrix, int vertex) {
+  public static ArrayList<Integer> getAdjacents(ArrayList<ArrayList<Integer>> matrix, int vertex) {
     ArrayList<Integer> adjacentNodes = new ArrayList<Integer>();
     for (int i = 0; i < matrix.size(); i++) {
       if (matrix.get(vertex).get(i) == 1) {
@@ -17,27 +17,10 @@ public class GraphMatrix {
     return adjacentNodes;
   }
 
-  public static void printStack(Stack stack) {
-    System.out.print("   Stos:");
-    for (int i = 0; i < stack.size(); i++) {
-      System.out.print(" " + stack.elementAt(i));
-    }
-    System.out.print("\n");
-  }
-
-  public static void printArray(Boolean[] array) {
-    System.out.print("   Visited:");
-    for (int i = 0; i < array.length; i++) {
-      if (array[i] == true) System.out.print(" +");
-      else System.out.print(" -");
-    }
-    System.out.print("\n");
-  }
-
   public static Boolean isCyclicUtil(ArrayList<ArrayList<Integer>> matrix, int v, Boolean[] visited, int parent) {
     visited[v] = true;
     Integer i;
-    Iterator<Integer> it = getAdjacentNodes(matrix, v).iterator();
+    Iterator<Integer> it = getAdjacents(matrix, v).iterator();
     while (it.hasNext()) {
       i = it.next();
       if (!visited[i]) {
