@@ -5,9 +5,9 @@ public class VertexManager {
   public static Helpers h = new Helpers();
 
   public static void addVertex(ArrayList<ArrayList<Integer>> matrix) {
-    for (ArrayList<Integer> row : matrix) {
+    for (ArrayList<Integer> row : matrix)
       row.add(0);
-    }
+
     ArrayList<Integer> newRow = new ArrayList<Integer>();
     for (int i = 0; i < matrix.size()+1; i++) newRow.add(0);
     matrix.add(newRow);

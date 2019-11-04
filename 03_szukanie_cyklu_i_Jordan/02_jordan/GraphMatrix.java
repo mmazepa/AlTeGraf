@@ -4,12 +4,13 @@ import java.util.Iterator;
 public class GraphMatrix {
 
   public static FileManager fm = new FileManager();
+  public static EdgeManager em = new EdgeManager();
   public static Helpers h = new Helpers();
 
   public static ArrayList<Integer> getAdjacents(ArrayList<ArrayList<Integer>> matrix, int vertex) {
     ArrayList<Integer> adjacentNodes = new ArrayList<Integer>();
     for (int i = 0; i < matrix.size(); i++) {
-      if (matrix.get(vertex).get(i) == 1) {
+      if (em.areConnected(matrix, vertex, i)) {
         adjacentNodes.add(i);
       }
     }
@@ -53,7 +54,7 @@ public class GraphMatrix {
     int min = Integer.MAX_VALUE;
     int min_index = -1;
 
-    for (int v = 0; v < matrixSize; v++)  {
+    for (int v = 0; v < matrixSize; v++) {
       if (sptSet[v] == false && dist[v] <= min) {
         min = dist[v];
         min_index = v;
@@ -76,7 +77,7 @@ public class GraphMatrix {
       int u = minDistance(matrix.size(), dist, sptSet);
       sptSet[u] = true;
       for (int v = 0; v < matrix.size(); v++) {
-        if (!sptSet[v] && matrix.get(u).get(v) != 0 && dist[u] != Integer.MAX_VALUE && dist[u] + matrix.get(u).get(v) < dist[v]) {
+        if (!sptSet[v] && em.areConnected(matrix, u, v) && dist[u] != Integer.MAX_VALUE && dist[u] + matrix.get(u).get(v) < dist[v]) {
           dist[v] = dist[u] + matrix.get(u).get(v);
         }
       }
@@ -89,27 +90,23 @@ public class GraphMatrix {
 
     for (int i = 0; i < matrix.size(); i++) {
       int result = findMaxDistance(matrix, i);
-      if (result == Integer.MAX_VALUE) {
+      if (result == Integer.MAX_VALUE)
         h.exitOnPurpose("Graf nie jest spójny!");
-      }
       eccentricities.add(result);
     }
 
     h.displayEccentricities(eccentricities);
 
-    ArrayList<Integer> minDist = new ArrayList<Integer>();
     ArrayList<Integer> minIndex = new ArrayList<Integer>();
+    int minDist = Integer.MAX_VALUE;
 
-    minDist.add(Integer.MAX_VALUE);
     minIndex.add(0);
 
     for (int i = 0; i < eccentricities.size(); i++) {
-      if (minDist.get(0) >= eccentricities.get(i)) {
-        if (minDist.get(0) > eccentricities.get(i)) {
-          minDist.clear();
+      if (minDist >= eccentricities.get(i)) {
+        if (minDist > eccentricities.get(i))
           minIndex.clear();
-        }
-        minDist.add(eccentricities.get(i));
+        minDist = eccentricities.get(i);
         minIndex.add(i);
       }
     }
@@ -131,9 +128,8 @@ public class GraphMatrix {
 
     for (int i = 0; i < matrix.size(); i++) {
       Boolean cycle = isCyclic(matrix);
-      if (cycle) {
+      if (cycle)
         h.exitOnPurpose("Podany graf zawiera cykl!");
-      }
     }
 
     findCenterJordan(matrix);

@@ -68,17 +68,16 @@ public class Helpers {
     System.out.print("\n\n");
   }
 
-  public static void displayAnswer(ArrayList<Integer> index, ArrayList<Integer> dist) {
+  public static void displayAnswer(ArrayList<Integer> index, int dist) {
     String indexString = new String();
     String distString = new String();
 
-    if (index.size() == 1 && dist.size() == 1) {
+    if (index.size() == 1)
       indexString = String.format("%2d", (index.get(0)+1));
-    } else if (index.size() == 2 && dist.size() == 2) {
+    else if (index.size() == 2)
       indexString = String.format("%2d %2d", (index.get(0)+1), (index.get(1)+1));
-    }
 
-    distString = String.format("%2d", dist.get(0));
+    distString = String.format("%2d", dist);
 
     System.out.println("   Centrum drzewa to: " + indexString);
     System.out.println("   Najdalszy dystans: " + distString);
@@ -87,9 +86,8 @@ public class Helpers {
   public static int getMax(int[] array) {
     int max = 0;
     for (int i = 0; i < array.length; i++) {
-      if (max < array[i]) {
+      if (max < array[i])
         max = array[i];
-      }
     }
     return max;
   }

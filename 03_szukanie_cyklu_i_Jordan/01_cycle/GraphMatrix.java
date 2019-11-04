@@ -5,6 +5,7 @@ public class GraphMatrix {
 
   public static FileManager fm = new FileManager();
   public static VertexManager vm = new VertexManager();
+  public static EdgeManager em = new EdgeManager();
   public static Helpers h = new Helpers();
 
   public static ArrayList<Integer> path = new ArrayList<Integer>();
@@ -12,7 +13,7 @@ public class GraphMatrix {
   public static ArrayList<Integer> getAdjacents(ArrayList<ArrayList<Integer>> matrix, int vertex) {
     ArrayList<Integer> adjacentNodes = new ArrayList<Integer>();
     for (int i = 0; i < matrix.size(); i++) {
-      if (matrix.get(vertex).get(i) == 1) {
+      if (em.areConnected(matrix, vertex, i)) {
         adjacentNodes.add(i);
       }
     }
@@ -78,9 +79,9 @@ public class GraphMatrix {
       }
     }
 
-    if (matrix.get(path.get(0)).get(path.get(path.size()-1)) == 1) {
+    if (em.areConnected(matrix, path.get(0), path.get(path.size()-1)))
       path.add(path.get(0));
-    }
+
     System.out.print("   Przykładowy cykl:");
     path.forEach(n -> System.out.print(" " + (n+1)));
     System.out.print("\n");
