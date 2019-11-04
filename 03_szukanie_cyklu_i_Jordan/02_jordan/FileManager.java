@@ -23,9 +23,8 @@ public class FileManager {
       while ((line = bufferedReader.readLine()) != null) {
         if (counter == 0) {
           matrixSize = Integer.parseInt(line);
-          for (int i = 0; i < matrixSize; i++) {
+          for (int i = 0; i < matrixSize; i++)
             vm.addVertex(matrix);
-          }
         } else {
           String[] parts = line.split("->");
           em.addEdge(matrix, Integer.parseInt(parts[0]), Integer.parseInt(parts[1]));

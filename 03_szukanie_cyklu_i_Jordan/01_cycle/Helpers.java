@@ -28,9 +28,8 @@ public class Helpers {
     System.out.print("\n");
 
     System.out.print("   ───┼");
-    for (int i = 0; i < matrix.size(); i++) {
+    for (int i = 0; i < matrix.size(); i++)
       System.out.print("───");
-    }
     System.out.print("\n");
 
     for (int i = 0; i < matrix.size(); i++) {
@@ -50,5 +49,16 @@ public class Helpers {
     int sum = 0;
     for (Integer num : array) sum = sum + num;
     return sum;
+  }
+
+  public static void frameIt(String text) {
+    text = "Plik: " + text;
+    System.out.print("   ╔═");
+    for (int i = 0; i < text.length(); i++) System.out.print("═");
+    System.out.print("═╗\n");
+    System.out.print("   ║ " + text + " ║\n");
+    System.out.print("   ╚═");
+    for (int i = 0; i < text.length(); i++) System.out.print("═");
+    System.out.print("═╝\n");
   }
 }

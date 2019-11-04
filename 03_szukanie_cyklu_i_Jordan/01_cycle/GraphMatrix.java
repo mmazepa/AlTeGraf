@@ -58,26 +58,23 @@ public class GraphMatrix {
     h.clearScreen();
 
     ArrayList<ArrayList<Integer>> matrix = new ArrayList<ArrayList<Integer>>();
-    if (args.length > 0) {
+    if (args.length > 0)
       matrix = fm.prepareNewMatrix(args[0]);
-    } else {
+    else
       h.exitOnPurpose("Nie podano pliku z grafem wejściowym.");
-    }
+
+    System.out.print("\n");
+    // System.out.println("   " + args[0]);
+    h.frameIt(args[0]);
 
     System.out.print("\n");
     h.displayMatrix(matrix);
 
-    if (!vm.allDegreesNotLessThan(matrix, 2)) {
+    if (!vm.allDegreesNotLessThan(matrix, 2))
       h.exitOnPurpose("Minimalny stopień mniejszy niż 2.");
-    }
 
-    for (int i = 0; i < matrix.size(); i++) {
-      Boolean cycle = isCyclic(matrix);
-      if (cycle) {
-        System.out.println("   Podany graf zawiera co najmniej 1 cykl!");
-        break;
-      }
-    }
+    if (isCyclic(matrix))
+      System.out.println("   Podany graf zawiera co najmniej 1 cykl!");
 
     if (em.areConnected(matrix, path.get(0), path.get(path.size()-1)))
       path.add(path.get(0));

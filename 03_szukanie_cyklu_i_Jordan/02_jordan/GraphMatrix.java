@@ -73,7 +73,7 @@ public class GraphMatrix {
     }
 
     dist[src] = 0;
-    for (int count = 0; count < matrix.size() - 1; count++) {
+    for (int i = 0; i < matrix.size(); i++) {
       int u = minDistance(matrix.size(), dist, sptSet);
       sptSet[u] = true;
       for (int v = 0; v < matrix.size(); v++) {
@@ -85,18 +85,7 @@ public class GraphMatrix {
     return h.getMax(dist);
   }
 
-  public static void findCenterJordan(ArrayList<ArrayList<Integer>> matrix) {
-    ArrayList<Integer> eccentricities = new ArrayList<Integer>();
-
-    for (int i = 0; i < matrix.size(); i++) {
-      int result = findMaxDistance(matrix, i);
-      if (result == Integer.MAX_VALUE)
-        h.exitOnPurpose("Graf nie jest spójny!");
-      eccentricities.add(result);
-    }
-
-    h.displayEccentricities(eccentricities);
-
+  public static void chooseCenter(ArrayList<Integer> eccentricities) {
     ArrayList<Integer> minIndex = new ArrayList<Integer>();
     int minDist = Integer.MAX_VALUE;
 
@@ -113,24 +102,37 @@ public class GraphMatrix {
     h.displayAnswer(minIndex, minDist);
   }
 
+  public static void findCenterJordan(ArrayList<ArrayList<Integer>> matrix) {
+    ArrayList<Integer> eccentricities = new ArrayList<Integer>();
+
+    for (int i = 0; i < matrix.size(); i++) {
+      int result = findMaxDistance(matrix, i);
+      if (result == Integer.MAX_VALUE)
+        h.exitOnPurpose("Graf nie jest spójny!");
+      eccentricities.add(result);
+    }
+
+    h.displayEccentricities(eccentricities);
+    chooseCenter(eccentricities);
+  }
+
   public static void main(String args[]) {
     h.clearScreen();
 
     ArrayList<ArrayList<Integer>> matrix = new ArrayList<ArrayList<Integer>>();
-    if (args.length > 0) {
+    if (args.length > 0)
       matrix = fm.prepareNewMatrix(args[0]);
-    } else {
+    else
       h.exitOnPurpose("Nie podano pliku z grafem wejściowym.");
-    }
+
+    System.out.print("\n");
+    h.frameIt(args[0]);
 
     System.out.print("\n");
     h.displayMatrix(matrix);
 
-    for (int i = 0; i < matrix.size(); i++) {
-      Boolean cycle = isCyclic(matrix);
-      if (cycle)
-        h.exitOnPurpose("Podany graf zawiera cykl!");
-    }
+    if (isCyclic(matrix))
+      h.exitOnPurpose("Podany graf zawiera cykl!");
 
     findCenterJordan(matrix);
     System.out.print("\n");
