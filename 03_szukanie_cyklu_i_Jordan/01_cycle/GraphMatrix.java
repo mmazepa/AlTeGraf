@@ -46,7 +46,6 @@ public class GraphMatrix {
     for (int u = 0; u < matrix.size(); u++) {
       if (!visited[u]) {
         if (isCyclicUtil(matrix, u, visited, -1)) {
-          // if (matrix.get(path.get(0)).get(u) == 1) path.add(u);
           return true;
         }
       }
@@ -84,13 +83,9 @@ public class GraphMatrix {
     }
     System.out.print("   Przykładowy cykl:");
     path.forEach(n -> System.out.print(" " + (n+1)));
-    // for (int i = 0; i < path.size()-1; i++) {
-    //   System.out.println(matrix.get(path.get(i)).get(path.get(i+1)));
-    // }
-    // System.out.println(path.get(0) == path.get(path.size()-1));
+    System.out.print("\n");
 
-
-
-    System.out.print("\n\n");
+    System.out.println("   Długość cyklu: " + (path.size()-1));
+    System.out.print("\n");
   }
 }
