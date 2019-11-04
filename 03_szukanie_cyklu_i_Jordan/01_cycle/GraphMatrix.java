@@ -64,7 +64,6 @@ public class GraphMatrix {
       h.exitOnPurpose("Nie podano pliku z grafem wejściowym.");
 
     System.out.print("\n");
-    // System.out.println("   " + args[0]);
     h.frameIt(args[0]);
 
     System.out.print("\n");
