@@ -46,6 +46,54 @@ public class Helpers {
     System.out.print("\n");
   }
 
+  public static void displayEccentricities(ArrayList<Integer> eccentricities) {
+    System.out.print("    index │");
+    for (int i = 0; i < eccentricities.size(); i++) {
+      String output = String.format("%2s", (i+1));
+      System.out.print(output + " ");
+    }
+    System.out.print("\n");
+
+    System.out.print("   ───────┼");
+    for (int i = 0; i < eccentricities.size(); i++) {
+      System.out.print("───");
+    }
+    System.out.print("\n");
+
+    System.out.print("    ecce  │");
+    for (int i = 0; i < eccentricities.size(); i++) {
+      String output = String.format("%2s", eccentricities.get(i));
+      System.out.print(output + " ");
+    }
+    System.out.print("\n\n");
+  }
+
+  public static void displayAnswer(ArrayList<Integer> index, ArrayList<Integer> dist) {
+    String indexString = new String();
+    String distString = new String();
+
+    if (index.size() == 1 && dist.size() == 1) {
+      indexString = String.format("%2d", (index.get(0)+1));
+    } else if (index.size() == 2 && dist.size() == 2) {
+      indexString = String.format("%2d %2d", (index.get(0)+1), (index.get(1)+1));
+    }
+
+    distString = String.format("%2d", dist.get(0));
+
+    System.out.println("   Centrum drzewa to: " + indexString);
+    System.out.println("   Najdalszy dystans: " + distString);
+  }
+
+  public static int getMax(int[] array) {
+    int max = 0;
+    for (int i = 0; i < array.length; i++) {
+      if (max < array[i]) {
+        max = array[i];
+      }
+    }
+    return max;
+  }
+
   public static int sumArray(ArrayList<Integer> array) {
     int sum = 0;
     for (Integer num : array) sum = sum + num;
