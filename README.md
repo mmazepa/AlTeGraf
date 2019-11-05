@@ -48,8 +48,8 @@ w ramach przedmiotu Algorytmiczna Teoria Grafów w roku akademickim 2019/2020.
     <td rowspan="2">05.11.2019</td>
     <td>1</td>
     <td>Znajdowanie cyklu w grafie.</td>
-    <td>0/4 pkt</td>
-    <td rowspan="2">0/9 pkt</td>
+    <td>4/4 pkt</td>
+    <td rowspan="2">7/9 pkt</td>
   </tr>
   <tr>
     <td>2</td>
@@ -57,7 +57,7 @@ w ramach przedmiotu Algorytmiczna Teoria Grafów w roku akademickim 2019/2020.
       Algorytm Jordana, centrum drzewa (wersja naiwna - 3 pkt,
       czas liniowy - 5 pkt).
     </td>
-    <td>0/5 pkt</td>
+    <td>3/5 pkt</td>
   </tr>
   <tr>
     <td rowspan="3">4</td>
@@ -110,11 +110,11 @@ w ramach przedmiotu Algorytmiczna Teoria Grafów w roku akademickim 2019/2020.
   </tr>
   <tr align="right">
     <td colspan="5"><b>OGÓŁEM:</b></td>
-    <td>6/51 pkt</td>
+    <td>13/51 pkt</td>
   </tr>
   <tr align="right">
     <td colspan="5"><b>PROCENT:</b></td>
-    <td>11.76%</td>
+    <td>25.49%</td>
   </tr>
   <tr align="right">
     <td colspan="5"><b>OCENA:</b></td>
