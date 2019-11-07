@@ -27,8 +27,8 @@ public class Vertex {
 
   public void show() {
     String num = String.format("%2d", number);
-    System.out.print("   " + num + " : ");
-    neighbours.forEach(n -> System.out.print(" " + n.getNumber()));
+    System.out.print("   " + num + " :");
+    neighbours.forEach(n -> System.out.print(String.format(" %2d", n.getNumber())));
     Helpers.breakLine();
   }
 }

@@ -1,5 +1,3 @@
-import java.util.Collections;
-
 public class Helpers {
 
   public static void clearScreen() {
@@ -20,12 +18,20 @@ public class Helpers {
     System.out.print("\n");
   }
 
-  public static void sortNeigbours(Vertex vertex) {
-    for (int i = 0; i < vertex.getNeighbours().size(); i++) {
-      for (int j = 0; j < vertex.getNeighbours().size(); j++) {
-        if (vertex.getNeighbours().get(i).getNumber() < vertex.getNeighbours().get(j).getNumber())
-          Collections.swap(vertex.getNeighbours(), i, j);
-      }
-    }
+  public static void frameIt(String text, Boolean bold) {
+    System.out.print(bold ? "   ╔═" : "   ╭─");
+    for (int i = 0; i < text.length(); i++) System.out.print(bold ? "═" : "─");
+    System.out.print(bold ? "═╗\n" : "─╮\n");
+    System.out.print(bold ? "   ║ " + text + " ║\n" : "   │ " + text + " │\n");
+    System.out.print(bold ? "   ╚═" : "   ╰─");
+    for (int i = 0; i < text.length(); i++) System.out.print(bold ? "═" : "─");
+    System.out.print(bold ? "═╝\n" : "─╯\n");
+  }
+
+  public static void displayGraph(Graph g, String text) {
+    frameIt(text, false);
+    breakLine();
+    g.show();
+    breakLine();
   }
 }

@@ -4,7 +4,6 @@ import java.util.Collections;
 public class EdgeManager {
 
   public static VertexManager vm = new VertexManager();
-  public static Helpers h = new Helpers();
 
   public static void setEdge(Graph graph, int v1, int v2) {
     if (v1 != v2) {
@@ -14,8 +13,8 @@ public class EdgeManager {
       vertex1.getNeighbours().add(vertex2);
       vertex2.getNeighbours().add(vertex1);
 
-      h.sortNeigbours(vertex1);
-      h.sortNeigbours(vertex2);
+      vm.sortNeigbours(vertex1);
+      vm.sortNeigbours(vertex2);
     }
   }
 
