@@ -22,17 +22,14 @@ w ramach przedmiotu Algorytmiczna Teoria Grafów w roku akademickim 2019/2020.
    <tr>
     <td>2</td>
     <td>
-      Czy graf zawiera podgraf izomorficzny do cyklu C3?
-      Wersja naiwny (+1 pkt), wersja w oparciu o mnożenie
-      macierzy (+1 pkt).
+      Czy graf zawiera podgraf izomorficzny do cyklu C3? Wersja naiwna (+1 pkt),
+      wersja w oparciu o mnożenie macierzy (+1 pkt).
     </td>
     <td>1/2 pkt</td>
   </tr>
   <tr>
     <td>3</td>
-    <td>
-      Ciąg grafowy. Tak/nie (+1 pkt), zwraca graf prosty (+2 pkt).
-    </td>
+    <td>Ciąg grafowy. Tak/nie (+1 pkt), zwraca graf prosty (+2 pkt).</td>
     <td>1/3 pkt</td>
   </tr>
   <tr>
@@ -108,13 +105,31 @@ w ramach przedmiotu Algorytmiczna Teoria Grafów w roku akademickim 2019/2020.
     <td>Algorytm Dijkstry...</td>
     <td>0/7 pkt</td>
   </tr>
+  <tr>
+    <td rowspan="3">7</td>
+    <td rowspan="3">10.12.2019</td>
+    <td>1</td>
+    <td>Wprowadzenie sieci i maksymalny przekrój.</td>
+    <td>0/5 pkt</td>
+    <td rowspan="3">0/14 pkt</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Ścieżki powiększające metodą cechowania wierzchołków.</td>
+    <td>0/5 pkt</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Minimalny przekroju (zbiór łuków).</td>
+    <td>0/4 pkt</td>
+  </tr>
   <tr align="right">
     <td colspan="5"><b>OGÓŁEM:</b></td>
-    <td>13/51 pkt</td>
+    <td>13/65 pkt</td>
   </tr>
   <tr align="right">
     <td colspan="5"><b>PROCENT:</b></td>
-    <td>25.49%</td>
+    <td>20.00%</td>
   </tr>
   <tr align="right">
     <td colspan="5"><b>OCENA:</b></td>

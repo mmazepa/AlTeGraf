@@ -1,8 +1,11 @@
 #!/bin/bash
 
-classfiles=(*.class)
-if [[ -f ${classfiles[0]} ]]; then
-  rm *.class
+DIRECTORY=class
+
+if [ ! -d "$DIRECTORY" ]; then
+  mkdir $DIRECTORY
+else
+  rm class/*.class
 fi
 
 javac -d class *.java
