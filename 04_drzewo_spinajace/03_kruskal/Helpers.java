@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Helpers {
 
   public static void clearScreen() {
@@ -28,10 +30,8 @@ public class Helpers {
     System.out.print(bold ? "═╝\n" : "─╯\n");
   }
 
-  public static void displayEdges(Graph graph) {
-    // graph.getEdges().forEach(e -> e.show());
-    for (Edge edge : graph.getEdges()) {
-      // System.out.println("   " + edge.show() + " : " + edge.getWeight());
+  public static void displayEdges(ArrayList<Edge> edges) {
+    for (Edge edge : edges) {
       edge.show();
       breakLine();
     }

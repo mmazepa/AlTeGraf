@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class App {
 
@@ -19,7 +20,29 @@ public class App {
     }
     h.breakLine();
 
-    h.displayEdges(graph);
+    h.displayEdges(graph.getEdges());
+    h.breakLine();
+
+    ArrayList<Vertex> forest = graph.getVertices();
+    ArrayList<Edge> edges = graph.getEdges();
+    ArrayList<Edge> tree = new ArrayList<Edge>();
+
+    for (int i = 0; i < edges.size(); i++) {
+      for (int j = i+1; j < edges.size(); j++) {
+          if (edges.get(i).getWeight() > edges.get(j).getWeight())
+            Collections.swap(edges, i, j);
+      }
+    }
+
+    while (!edges.isEmpty()) {
+      Edge edge = edges.get(0);
+      // if łączy dwa różne drzewa - połącz
+      // else odrzuć
+      tree.add(edge);
+      edges.remove(edge);
+    }
+
+    h.displayEdges(tree);
     h.breakLine();
   }
 }

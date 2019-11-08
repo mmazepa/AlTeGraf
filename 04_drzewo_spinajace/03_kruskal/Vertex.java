@@ -1,5 +1,8 @@
+import java.util.ArrayList;
+
 public class Vertex {
   private int number;
+  private ArrayList<Vertex> neighbours = new ArrayList<Vertex>();
 
   public Vertex() { }
 
@@ -12,6 +15,13 @@ public class Vertex {
   }
   public void setNumber(int number) {
     this.number = number;
+  }
+
+  public ArrayList<Vertex> getNeighbours() {
+    return neighbours;
+  }
+  public void setNeighbours(ArrayList<Vertex> neighbours) {
+    this.neighbours = neighbours;
   }
 
   public void show() {
