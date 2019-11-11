@@ -1,4 +1,5 @@
 public class Edge {
+
   private Vertex vertex1 = new Vertex();
   private Vertex vertex2 = new Vertex();
   private int weight = 0;

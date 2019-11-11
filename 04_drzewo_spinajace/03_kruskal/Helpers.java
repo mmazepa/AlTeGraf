@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Helpers {
 
   public static void clearScreen() {
@@ -28,12 +26,5 @@ public class Helpers {
     System.out.print(bold ? "   ╚═" : "   ╰─");
     for (int i = 0; i < text.length(); i++) System.out.print(bold ? "═" : "─");
     System.out.print(bold ? "═╝\n" : "─╯\n");
-  }
-
-  public static void displayEdges(ArrayList<Edge> edges) {
-    for (Edge edge : edges) {
-      edge.show();
-      breakLine();
-    }
   }
 }

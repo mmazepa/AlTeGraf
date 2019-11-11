@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class Graph {
+
   private ArrayList<Vertex> vertices = new ArrayList<Vertex>();
   private ArrayList<Edge> edges = new ArrayList<Edge>();
 
