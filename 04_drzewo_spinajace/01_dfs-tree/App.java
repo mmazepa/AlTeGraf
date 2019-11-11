@@ -23,12 +23,12 @@ public class App {
 
     Graph graph = new Graph();
 
-    if (args.length > 0) {
-      h.frameIt("Plik: " + args[0], true);
+    if (args.length > 0)
       graph = fm.prepareGraph(args[0]);
-    } else {
+    else
       h.exitOnPurpose("Nie podano pliku z grafem wejściowym!");
-    }
+
+    h.frameIt("Plik: " + args[0], true);
     h.breakLine();
     h.displayGraph(graph, "Graf Wejściowy");
 
