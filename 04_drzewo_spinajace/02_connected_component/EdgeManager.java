@@ -14,9 +14,16 @@ public class EdgeManager {
   }
 
   public static void displayEdges(ArrayList<Edge> edges) {
+    int counter = 1;
+    System.out.print("   ");
     for (Edge edge : edges) {
       edge.show();
-      h.breakLine();
+      if (counter%5 == 0) {
+        h.breakLine();
+        System.out.print("   ");
+      }
+      counter++;
     }
+    if (counter%5 != 1) h.breakLine();
   }
 }

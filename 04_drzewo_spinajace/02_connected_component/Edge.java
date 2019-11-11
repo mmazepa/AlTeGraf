@@ -25,10 +25,7 @@ public class Edge {
   }
 
   public void show() {
-    System.out.print("   (");
-    vertex1.show();
-    System.out.print(", ");
-    vertex2.show();
-    System.out.print(")");
+    String output = "(" + vertex1.getNumber() + ", " + vertex2.getNumber() + ")";
+    System.out.print(String.format("%10s", output));
   }
 }

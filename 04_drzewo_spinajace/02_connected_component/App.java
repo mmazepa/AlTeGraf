@@ -23,23 +23,76 @@ public class App {
     }
   }
 
+  public static void lookForConnectedComponents(Graph graph) {
+    int n = graph.getVertices().size();
+    int vertexSet[] = new int[n];
+
+    for (int i = 0; i < n; i++)
+      vertexSet[i] = graph.getVertices().get(i).getNumber();
+
+    for (Edge edge : graph.getEdges()) {
+      int v1 = edge.getVertex1().getNumber();
+      int v2 = edge.getVertex2().getNumber();
+      unionSets(vertexSet, n, v1, v2);
+    }
+
+    checkConnectivity(vertexSet);
+  }
+
+  public static void checkConnectivity(int[] vertexSet) {
+    int componentsAmount = 0;
+    int components[] = new int[vertexSet.length];
+
+    for (int i = 0; i < vertexSet.length; i++)
+      components[vertexSet[i]-1]++;
+
+    for (int i = 0; i < components.length; i++)
+      if (components[i] > 0) componentsAmount++;
+
+    if (componentsAmount == 1)
+      h.frameIt("Podany graf JEST spójny!", true);
+    else
+      h.frameIt("Podany graf NIE JEST spójny, składowych spójności: " + componentsAmount, true);
+    h.breakLine();
+
+    int counter = 1;
+
+    for (int i = 0; i < vertexSet.length; i++) {
+      if ((i+1) == findSet(vertexSet, i+1)) {
+        System.out.print("   [Składowa nr " + (counter++) + "] : ");
+        for (int j = 0; j < vertexSet.length; j++) {
+          if ((i+1) == findSet(vertexSet, j+1)) {
+            System.out.print(String.format(" %2d", (j+1)));
+          }
+        }
+        h.breakLine();
+      }
+    }
+  }
+
   public static void main(String args[]) {
     h.clearScreen();
     h.breakLine();
 
     Graph graph = new Graph();
 
-    if (args.length > 0) {
-      h.frameIt("Plik: " + args[0], true);
+    if (args.length > 0)
       graph = fm.prepareGraph(args[0]);
-    } else {
+    else
       h.exitOnPurpose("Nie podano pliku z grafem wejściowym!");
-    }
+
+    h.frameIt("Plik: " + args[0], true);
     h.breakLine();
     h.frameIt("Graf wejściowy", false);
     h.breakLine();
 
+    System.out.println("   Liczba wierzchołków: " + graph.getVertices().size());
+    h.breakLine();
+
     em.displayEdges(graph.getEdges());
+    h.breakLine();
+
+    lookForConnectedComponents(graph);
     h.breakLine();
   }
 }
