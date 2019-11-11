@@ -15,6 +15,15 @@ public class EdgeManager {
     }
   }
 
+  public static void removeEdge(Graph graph, int v1, int v2) {
+    if (v1 != v2) {
+      Vertex vertex1 = vm.getVertexByNumber(graph, v1);
+      Vertex vertex2 = vm.getVertexByNumber(graph, v2);
+
+      vertex1.getNeighbours().remove(vertex2);
+    }
+  }
+
   public static Boolean areConnected(Graph graph, int v1, int v2) {
     Vertex vertex1 = vm.getVertexByNumber(graph, v1);
     Vertex vertex2 = vm.getVertexByNumber(graph, v2);
