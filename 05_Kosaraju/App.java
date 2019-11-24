@@ -8,13 +8,13 @@ public class App {
   public static EdgeManager em = new EdgeManager();
   public static Helpers h = new Helpers();
 
-  public static void DFSstack(Vertex v, Boolean[] visited, Stack<Vertex> stack, Graph graph, Boolean fillingStack) {
+  public static void DFS(Vertex v, Boolean[] visited, Stack<Vertex> stack, Graph graph, Boolean fillingStack) {
     v = vm.getVertexByNumber(graph, v.getNumber());
     visited[v.getNumber()-1] = true;
 
     for (Vertex u : v.getNeighbours()) {
       if (!visited[u.getNumber()-1])
-        DFSstack(u, visited, stack, graph, fillingStack);
+        DFS(u, visited, stack, graph, fillingStack);
     }
 
     if (fillingStack)
@@ -50,8 +50,10 @@ public class App {
 
     resetVisited(visited);
 
-    DFSstack(vm.getVertexByNumber(graph, 1), visited, stack, graph, true);
-    h.breakLine();
+    for (int v = 0; v < n; v++) {
+      if (!visited[v])
+        DFS(vm.getVertexByNumber(graph, (v+1)), visited, stack, graph, true);
+    }
 
     graph = transposeGraph(graph);
     h.displayGraph(graph, "Transpozycja digrafu");
@@ -68,7 +70,7 @@ public class App {
       if (!visited[vertex.getNumber()-1]) {
         cn = cn + 1;
         System.out.print("   *" + String.format("%2d", cn) + ":");
-        DFSstack(vertex, visited, null, graph, false);
+        DFS(vertex, visited, null, graph, false);
         h.breakLine();
       }
     }
