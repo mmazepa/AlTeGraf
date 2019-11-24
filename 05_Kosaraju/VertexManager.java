@@ -7,6 +7,16 @@ public class VertexManager {
     graph.getVertices().add(vertex);
   }
 
+  public static void removeVertex(Graph graph, Vertex vertex) {
+    graph.getVertices().remove(vertex);
+    for (Vertex v2 : graph.getVertices()) {
+      for (Vertex neighbour : v2.getNeighbours()) {
+        if (neighbour.getNumber() == vertex.getNumber())
+          v2.getNeighbours().remove(vertex);
+      }
+    }
+  }
+
   public Vertex getVertexByNumber(Graph graph, int number) {
     for (Vertex vertex : graph.getVertices())
       if (vertex.getNumber() == number)

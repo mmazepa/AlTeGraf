@@ -8,29 +8,19 @@ public class App {
   public static EdgeManager em = new EdgeManager();
   public static Helpers h = new Helpers();
 
-  // public static void printStack(Stack<Vertex> stack) {
-  //   System.out.print("   STOS:");
-  //   stack.forEach(n -> System.out.print(" " + n.getNumber()));
-  //   h.breakLine();
-  // }
-
-  public static void DFSstack(Vertex v, Boolean[] visited, Stack<Vertex> stack, Graph graph) {
+  public static void DFSstack(Vertex v, Boolean[] visited, Stack<Vertex> stack, Graph graph, Boolean fillingStack) {
+    v = vm.getVertexByNumber(graph, v.getNumber());
     visited[v.getNumber()-1] = true;
+
     for (Vertex u : v.getNeighbours()) {
       if (!visited[u.getNumber()-1])
-        DFSstack(u, visited, stack, graph);
+        DFSstack(u, visited, stack, graph, fillingStack);
     }
-    stack.push(v);
-    // printStack(stack); // <------ (!!!)
-  }
 
-  public static void DFSprint(Vertex v, Boolean[] visited, Graph graph) {
-    visited[v.getNumber()-1] = true;
-    System.out.print(String.format(" %2d", v.getNumber()));
-    for (Vertex u : v.getNeighbours()) {
-      if (!visited[u.getNumber()-1])
-        DFSprint(u, visited, graph);
-    }
+    if (fillingStack)
+      stack.push(v);
+    else
+      System.out.print(String.format(" %2d", v.getNumber()));
   }
 
   public static Graph transposeGraph(Graph graph) {
@@ -48,41 +38,40 @@ public class App {
     return transpose;
   }
 
+  public static void resetVisited(Boolean[] visited) {
+    for (int i = 0; i < visited.length; i++)
+      visited[i] = false;
+  }
+
   public static void theKosarajuAlgorithm(Graph graph) {
+    Stack<Vertex> stack = new Stack<Vertex>();
     int n = graph.getVertices().size();
     Boolean visited[] = new Boolean[n];
 
-    for (int i = 0; i < visited.length; i++)
-      visited[i] = false;
+    resetVisited(visited);
 
-    Stack<Vertex> stack = new Stack<Vertex>();
-    for (int v = 0; v < n; v++) {
-      if (!visited[v])
-        DFSstack(vm.getVertexByNumber(graph, (v+1)), visited, stack, graph);
-    }
+    DFSstack(vm.getVertexByNumber(graph, 1), visited, stack, graph, true);
+    h.breakLine();
 
     graph = transposeGraph(graph);
     h.displayGraph(graph, "Transpozycja digrafu");
 
-    for (int i = 0; i < visited.length; i++)
-      visited[i] = false;
-
     h.frameIt("Silnie spójne składowe", false);
     h.breakLine();
 
+    resetVisited(visited);
     int cn = 0;
 
     while (!stack.empty()) {
-      // printStack(stack); // <------ (!!!)
-      Vertex v = stack.pop();
-      if (!visited[v.getNumber()-1]) {
+      Vertex vertex = stack.pop();
+
+      if (!visited[vertex.getNumber()-1]) {
         cn = cn + 1;
-        System.out.print("   * " + String.format("%2d", cn) + ": ");
-        DFSprint(v, visited, graph);
+        System.out.print("   *" + String.format("%2d", cn) + ":");
+        DFSstack(vertex, visited, null, graph, false);
         h.breakLine();
       }
     }
-    // printStack(stack); // <------ (!!!)
   }
 
   public static void main(String args[]) {
