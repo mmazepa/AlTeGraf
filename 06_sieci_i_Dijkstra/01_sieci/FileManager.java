@@ -30,17 +30,19 @@ public class FileManager {
             vm.addVertex(graph, vertex);
           }
         } else {
-          String[] parts = line.split("->");
-          String[] parts2 = parts[1].split(" : ");
+          String[] parts = line.split(" : ");
+          String[] parts2 = parts[1].split("->");
+
           em.addEdge(graph,
-            Integer.parseInt(parts[0]),
+            parts[0],
             Integer.parseInt(parts2[0]),
-            Integer.parseInt(parts2[1]));
+            Integer.parseInt(parts2[1]),
+            Integer.parseInt(parts[2]));
         }
         counter++;
       }
     } catch (Exception e) {
-      // e.printStackTrace();
+      e.printStackTrace();
       h.exitOnPurpose("Plik \"" + fileName + "\": coś poszło nie tak...");
     }
     return graph;
