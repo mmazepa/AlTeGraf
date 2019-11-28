@@ -120,7 +120,7 @@ w ramach przedmiotu Algorytmiczna Teoria Grafów w roku akademickim 2019/2020.
   </tr>
   <tr>
     <td>3</td>
-    <td>Minimalny przekroju (zbiór łuków).</td>
+    <td>Minimalny przekrój (zbiór łuków).</td>
     <td>0/4 pkt</td>
   </tr>
   <tr align="right">
