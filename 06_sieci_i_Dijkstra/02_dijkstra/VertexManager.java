@@ -12,4 +12,11 @@ public class VertexManager {
         return vertex;
     return null;
   }
+
+  public Vertex getVertexByNumber(ArrayList<Vertex> vertices, int number) {
+    for (Vertex vertex : vertices)
+      if (vertex.getNumber() == number)
+        return vertex;
+    return null;
+  }
 }

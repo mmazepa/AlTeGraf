@@ -19,4 +19,15 @@ public class EdgeManager {
       h.breakLine();
     }
   }
+
+  public static int getWeightTwoVertices(Graph g, int v1, int v2) {
+    for (Edge e : g.getEdges()) {
+      int edge_v1 = e.getVertex1().getNumber();
+      int edge_v2 = e.getVertex2().getNumber();
+
+      if ((edge_v1 == v1 && edge_v2 == v2))// || (edge_v1 == v2 && edge_v2 == v1))
+        return e.getWeight();
+    }
+    return Integer.MAX_VALUE;
+  }
 }
