@@ -33,6 +33,9 @@ public class FileManager {
           String[] parts = line.split("->");
           String[] parts2 = parts[1].split(" : ");
 
+          if (Integer.parseInt(parts2[1]) <= 0)
+            h.exitOnPurpose("Wszystkie wagi muszą być dodatnie!");
+
           em.addEdge(graph,
             Integer.parseInt(parts[0]),
             Integer.parseInt(parts2[0]),
@@ -41,7 +44,7 @@ public class FileManager {
         counter++;
       }
     } catch (Exception e) {
-      e.printStackTrace();
+      // e.printStackTrace();
       h.exitOnPurpose("Plik \"" + fileName + "\": coś poszło nie tak...");
     }
     return graph;
