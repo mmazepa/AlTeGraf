@@ -31,20 +31,30 @@ public class App {
   }
 
   public static void displayOneRow(ArrayList<Vertex> vertices, Vertex v, ArrayList<Integer> row, int i, int size) {
-    System.out.print("   " + i + " | ");
-    System.out.print(v.getNumber() + " | ");
+    System.out.print("   " + String.format("%8d", i) + " │ ");
+    System.out.print(v.getNumber() + " │ ");
     displaySet(vertices);
-    System.out.print(" | ");
     for (int j = 0; j < size; j++) {
+      System.out.print(" │");
       if (row.get(j) == Integer.MAX_VALUE)
-        System.out.print(String.format("%2s", "∞"));
+        System.out.print(String.format("%5s", "∞"));
       else
-        System.out.print(String.format("%2d", row.get(j)));
+        System.out.print(String.format("%5d", row.get(j)));
     }
     h.breakLine();
   }
 
+  public static void displayHeader(Graph g) {
+    System.out.print("   Iteracja │ u │ ");
+    System.out.print(String.format("%15s", "U"));
+    for (int i = 0; i < g.getVertices().size(); i++)
+      System.out.print(" │ X[" + (i+1) + "]");
+    h.breakLine();
+  }
+
   public static ArrayList<ArrayList<Integer>> theDijkstraAlgorithm(Graph g, Vertex s) {
+    displayHeader(g);
+
     ArrayList<Vertex> vertices = g.getVertices();
 
     int n = vertices.size();
