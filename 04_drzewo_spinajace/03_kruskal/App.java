@@ -45,6 +45,31 @@ public class App {
     return tree;
   }
 
+  public static Boolean isConnected(Graph graph) {
+    int vs = graph.getVertices().size();
+    int es = graph.getEdges().size();
+    int vertexSet[] = new int[vs];
+
+    for (int i = 0; i < vs; i++)
+      vertexSet[i] = graph.getVertices().get(i).getNumber();
+
+    for (int i = 0; i < es; i++) {
+      int v1 = graph.getEdges().get(i).getVertex1().getNumber();
+      int v2 = graph.getEdges().get(i).getVertex2().getNumber();
+      unionSets(vertexSet, vs, v1, v2);
+    }
+
+    int prev = findSet(vertexSet, 1);
+    for (int i = 1; i < vs; i++) {
+      // System.out.println(findSet(vertexSet, (i+1)));
+      int tmp = findSet(vertexSet, (i+1));
+      if (tmp != prev) return false;// h.exitOnPurpose("Graf nie jest spójny!");
+      prev = tmp;
+    }
+
+    return true;
+  }
+
   public static void main(String args[]) {
     h.clearScreen();
     h.breakLine();
@@ -63,6 +88,11 @@ public class App {
 
     em.sortByWeights(graph.getEdges());
     em.displayEdges(graph.getEdges());
+
+    if (!isConnected(graph)) {
+      h.breakLine();
+      h.exitOnPurpose("Graf nie jest spójny!");
+    }
 
     h.breakLine();
     h.frameIt("Minimalne drzewo spinające", false);

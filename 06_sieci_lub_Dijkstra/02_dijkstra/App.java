@@ -52,7 +52,7 @@ public class App {
     h.breakLine();
   }
 
-  public static ArrayList<ArrayList<Integer>> theDijkstraAlgorithm(Graph g, Vertex s) {
+  public static void theDijkstraAlgorithm(Graph g, Vertex s) {
     displayHeader(g);
 
     ArrayList<Vertex> vertices = g.getVertices();
@@ -78,6 +78,8 @@ public class App {
     displayOneRow(vertices, s, matrix.get(0), 0, n);
 
     while (!vertices.isEmpty()) {
+      // if (vertices.size() <= 1) break;
+
       Vertex u = new Vertex();
       int min = Integer.MAX_VALUE;
 
@@ -90,23 +92,21 @@ public class App {
           u = vertex;
         }
       }
+      if (u.getNumber() == 0) break;
       vertices.remove(u);
 
       for (Vertex v : vertices) {
         int firstValue = matrix.get(counter).get(v.getNumber()-1);
-        int secondValue = matrix.get(counter).get(u.getNumber()-1) + em.getWeightTwoVertices(g, u.getNumber(), v.getNumber());
+        int secondValue = matrix.get(counter).get(u.getNumber()-1) +
+                            + em.getWeightTwoVertices(g, u.getNumber(), v.getNumber());
 
-        // ------------------------------------------------------------------------
-        if (getMin(firstValue, secondValue) != -Integer.MAX_VALUE) // ???
+        if (getMin(firstValue, secondValue) > 0)
           matrix.get(counter).set(v.getNumber()-1, getMin(firstValue, secondValue));
-        // ------------------------------------------------------------------------
       }
 
       displayOneRow(vertices, u, matrix.get(counter), counter, n);
       counter++;
     }
-
-    return matrix;
   }
 
   public static void main(String args[]) {
@@ -128,8 +128,7 @@ public class App {
     h.breakLine();
 
     int n = graph.getVertices().size();
-    ArrayList<ArrayList<Integer>> matrix = new ArrayList<ArrayList<Integer>>();
-    matrix = theDijkstraAlgorithm(graph, vm.getVertexByNumber(graph, 1));
+    theDijkstraAlgorithm(graph, vm.getVertexByNumber(graph, 1));
     h.breakLine();
   }
 }

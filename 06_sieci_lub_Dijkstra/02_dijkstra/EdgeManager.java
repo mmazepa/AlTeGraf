@@ -25,7 +25,7 @@ public class EdgeManager {
       int edge_v1 = e.getVertex1().getNumber();
       int edge_v2 = e.getVertex2().getNumber();
 
-      if ((edge_v1 == v1 && edge_v2 == v2))// || (edge_v1 == v2 && edge_v2 == v1))
+      if ((edge_v1 == v1 && edge_v2 == v2))
         return e.getWeight();
     }
     return Integer.MAX_VALUE;

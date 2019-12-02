@@ -44,6 +44,10 @@ public class App {
     }
 
     DFSTree(graph.getVertices().get(0), graph, tree, visited);
+    for (int i = 0; i < visited.length; i++) {
+      if (visited[i] == false)
+        h.exitOnPurpose("Graf nie jest spójny!");
+    }
     h.displayGraph(tree, "Drzewo Spinające DFS");
   }
 }
