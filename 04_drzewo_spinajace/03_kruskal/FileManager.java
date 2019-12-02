@@ -40,7 +40,7 @@ public class FileManager {
         counter++;
       }
     } catch (Exception e) {
-      e.printStackTrace();
+      // e.printStackTrace();
       h.exitOnPurpose("Plik \"" + fileName + "\": coś poszło nie tak...");
     }
     return graph;

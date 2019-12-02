@@ -61,9 +61,8 @@ public class App {
 
     int prev = findSet(vertexSet, 1);
     for (int i = 1; i < vs; i++) {
-      // System.out.println(findSet(vertexSet, (i+1)));
       int tmp = findSet(vertexSet, (i+1));
-      if (tmp != prev) return false;// h.exitOnPurpose("Graf nie jest spójny!");
+      if (tmp != prev) return false;
       prev = tmp;
     }
 

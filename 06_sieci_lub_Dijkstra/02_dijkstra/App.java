@@ -78,8 +78,6 @@ public class App {
     displayOneRow(vertices, s, matrix.get(0), 0, n);
 
     while (!vertices.isEmpty()) {
-      // if (vertices.size() <= 1) break;
-
       Vertex u = new Vertex();
       int min = Integer.MAX_VALUE;
 
