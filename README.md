@@ -93,17 +93,12 @@ w ramach przedmiotu Algorytmiczna Teoria Grafów w roku akademickim 2019/2020.
   </tr>
   </tr>
   <tr>
-    <td rowspan="2">6</td>
-    <td rowspan="2">03.12.2019</td>
+    <td rowspan="1">6</td>
+    <td rowspan="1">03.12.2019</td>
     <td>1</td>
-    <td>Sieć skierowana...</td>
+    <td>Sieć skierowana (9 pkt) LUB Algorytm Dijkstry (7 pkt).</td>
     <td>0/9 pkt</td>
-    <td rowspan="2">0/16 pkt</td>
-  </tr>
-  <tr>
-    <td>2</td>
-    <td>Algorytm Dijkstry...</td>
-    <td>0/7 pkt</td>
+    <td rowspan="1">0/9 pkt</td>
   </tr>
   <tr>
     <td rowspan="3">7</td>
@@ -125,11 +120,11 @@ w ramach przedmiotu Algorytmiczna Teoria Grafów w roku akademickim 2019/2020.
   </tr>
   <tr align="right">
     <td colspan="5"><b>OGÓŁEM:</b></td>
-    <td>13/65 pkt</td>
+    <td>13/58 pkt</td>
   </tr>
   <tr align="right">
     <td colspan="5"><b>PROCENT:</b></td>
-    <td>20.00%</td>
+    <td>22.41%</td>
   </tr>
   <tr align="right">
     <td colspan="5"><b>OCENA:</b></td>
