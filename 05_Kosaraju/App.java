@@ -69,7 +69,7 @@ public class App {
 
       if (!visited[vertex.getNumber()-1]) {
         cn = cn + 1;
-        System.out.print("   *" + String.format("%2d", cn) + ":");
+        System.out.print("   [Składowa nr" + String.format("%2d", cn) + "] :");
         DFS(vertex, visited, null, graph, false);
         h.breakLine();
       }

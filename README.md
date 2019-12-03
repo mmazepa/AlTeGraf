@@ -63,15 +63,15 @@ w ramach przedmiotu Algorytmiczna Teoria Grafów w roku akademickim 2019/2020.
     <td>
       Algorytm DFS dowolnego grafu, wyznaczanie drzewa spinającego DFS.
     </td>
-    <td>0/5 pkt</td>
-    <td rowspan="3">0/12 pkt</td>
+    <td>5/5 pkt</td>
+    <td rowspan="3">12/12 pkt</td>
   </tr>
   <tr>
     <td>2</td>
     <td>
       Czy podany graf jest spójny? Wyznaczanie składowych spójności grafu.
     </td>
-    <td>0/4 pkt</td>
+    <td>4/4 pkt</td>
   </tr>
   <tr>
     <td>3</td>
@@ -79,7 +79,7 @@ w ramach przedmiotu Algorytmiczna Teoria Grafów w roku akademickim 2019/2020.
       Algorytm Kruskala, graf z wagami na krawędziach, minimalne drzewo
       spinające.
     </td>
-    <td>0/3 pkt</td>
+    <td>3/3 pkt</td>
   </tr>
   <tr>
     <td rowspan="1">5</td>
@@ -88,8 +88,8 @@ w ramach przedmiotu Algorytmiczna Teoria Grafów w roku akademickim 2019/2020.
     <td>
       Zaimplementuj algorytm Kosaraju wyznaczający silnie spójne składowe digrafu.
     </td>
-    <td>0/5 pkt</td>
-    <td rowspan="1">0/5 pkt</td>
+    <td>5/5 pkt</td>
+    <td rowspan="1">5/5 pkt</td>
   </tr>
   </tr>
   <tr>
@@ -97,8 +97,8 @@ w ramach przedmiotu Algorytmiczna Teoria Grafów w roku akademickim 2019/2020.
     <td rowspan="1">03.12.2019</td>
     <td>1</td>
     <td>Sieć skierowana (9 pkt) LUB Algorytm Dijkstry (7 pkt).</td>
-    <td>0/9 pkt</td>
-    <td rowspan="1">0/9 pkt</td>
+    <td>5/7 pkt</td>
+    <td rowspan="1">5/9 pkt</td>
   </tr>
   <tr>
     <td rowspan="3">7</td>
@@ -118,16 +118,27 @@ w ramach przedmiotu Algorytmiczna Teoria Grafów w roku akademickim 2019/2020.
     <td>Minimalny przekrój (zbiór łuków).</td>
     <td>0/4 pkt</td>
   </tr>
+    <tr>
+    <td rowspan="1">8</td>
+    <td rowspan="1">17.12.2019</td>
+    <td>1</td>
+    <td>
+      Czy graf jest dwudzielny? Skojarzenie maksymalne
+      metodą szukania maksymalnego przekroju.
+    </td>
+    <td>0/5 pkt</td>
+    <td rowspan="1">0/5 pkt</td>
+  </tr>
   <tr align="right">
     <td colspan="5"><b>OGÓŁEM:</b></td>
-    <td>13/58 pkt</td>
+    <td>35/63 pkt</td>
   </tr>
   <tr align="right">
     <td colspan="5"><b>PROCENT:</b></td>
-    <td>22.41%</td>
+    <td>55.56%</td>
   </tr>
   <tr align="right">
     <td colspan="5"><b>OCENA:</b></td>
-    <td>2.0</td>
+    <td>3.0</td>
   </tr>
 </table>
