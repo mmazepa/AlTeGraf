@@ -38,19 +38,17 @@ public class App {
     ArrayList<Vertex> path = new ArrayList<Vertex>();
 
     if (!DFS(start, end, stack, visited, graph)) {
-      System.out.println("   BRAK ŚCIEŻKI!");
+      System.out.println("   BRAK DROGI!");
       h.breakLine();
-      h.exitOnPurpose("Nie istnieje ścieżka między startem a ujściem!");
+      h.exitOnPurpose("Nie istnieje droga między startem a ujściem!");
     } else {
       System.out.println("   ISTNIEJE!!");
-
       while (!stack.empty()) {
         Vertex v = stack.pop();
         path.add(v);
       }
+      h.displayPath("Przykładowa droga", path);
     }
-
-    h.displayPath("Przykładowa ścieżka", path);
   }
 
   public static void main(String args[]) {
@@ -86,7 +84,7 @@ public class App {
     System.out.print("   Ujście: ");
     end.show();
     h.breakLine();
-    System.out.println("   Czy istnieje ścieżka między startem a ujściem?");
+    System.out.println("   Czy istnieje droga między startem a ujściem?");
     h.breakLine();
 
     findPath(start, end, graph);
