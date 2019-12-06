@@ -104,7 +104,7 @@ w ramach przedmiotu Algorytmiczna Teoria Grafów w roku akademickim 2019/2020.
     <td rowspan="3">7</td>
     <td rowspan="3">10.12.2019</td>
     <td>1</td>
-    <td>Wprowadzenie sieci i maksymalny przekrój.</td>
+    <td>Wprowadzenie sieci i maksymalny przepływ.</td>
     <td>0/5 pkt</td>
     <td rowspan="3">0/14 pkt</td>
   </tr>
@@ -124,7 +124,7 @@ w ramach przedmiotu Algorytmiczna Teoria Grafów w roku akademickim 2019/2020.
     <td>1</td>
     <td>
       Czy graf jest dwudzielny? Skojarzenie maksymalne
-      metodą szukania maksymalnego przekroju.
+      metodą szukania maksymalnego przepływu.
     </td>
     <td>0/5 pkt</td>
     <td rowspan="1">0/5 pkt</td>
