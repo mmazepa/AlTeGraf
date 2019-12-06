@@ -17,6 +17,6 @@ public class Vertex {
   }
 
   public void show() {
-    System.out.println(this.number);
+    System.out.print("v" + this.number);
   }
 }

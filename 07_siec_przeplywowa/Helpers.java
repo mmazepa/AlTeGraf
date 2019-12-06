@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class Helpers {
 
   public static void clearScreen() {
@@ -26,5 +29,18 @@ public class Helpers {
     System.out.print(bold ? "   ╚═" : "   ╰─");
     for (int i = 0; i < text.length(); i++) System.out.print(bold ? "═" : "─");
     System.out.print(bold ? "═╝\n" : "─╯\n");
+  }
+
+  public static void displayPath(String pathName, ArrayList<Vertex> path) {
+    System.out.println("   " + pathName + ":");
+    Collections.reverse(path);
+
+    System.out.print("      ");
+    path.get(0).show();
+    for (int i = 1; i < path.size(); i++) {
+      System.out.print(" -> ");
+      path.get(i).show();
+    }
+    breakLine();
   }
 }
