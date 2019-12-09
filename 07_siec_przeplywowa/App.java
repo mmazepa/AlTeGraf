@@ -51,6 +51,33 @@ public class App {
     }
   }
 
+  public static int[][] prepareEmptyMatrix(int n) {
+    int[][] matrix = new int[n][n];
+
+    for (int i = 0; i < n; i++) {
+      for (int j = i; j < n; j++) {
+        matrix[i][j] = 0;
+        matrix[j][i] = 0;
+      }
+    }
+    return matrix;
+  }
+
+  public static int[][] prepareMatrix(Graph graph) {
+    int n = graph.getVertices().size();
+    int[][] matrix = new int[n][n];
+
+    matrix = prepareEmptyMatrix(graph.getVertices().size());
+
+    for (Edge edge : graph.getEdges()) {
+      int v1_index = edge.getVertex1().getNumber()-1;
+      int v2_index = edge.getVertex2().getNumber()-1;
+      matrix[v1_index][v2_index] = edge.getWeight();
+    }
+
+    return matrix;
+  }
+
   public static void main(String args[]) {
     h.clearScreen();
     h.breakLine();
@@ -88,6 +115,13 @@ public class App {
     h.breakLine();
 
     findPath(start, end, graph);
+    h.breakLine();
+
+    int[][] matrix = new int[n][n];
+    matrix = prepareMatrix(graph);
+    h.frameIt("Macierz przepustowości", false);
+    h.breakLine();
+    h.displayMatrix(matrix);
     h.breakLine();
   }
 }
