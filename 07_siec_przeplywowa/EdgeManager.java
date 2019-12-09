@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class EdgeManager {
 
-  public static VertexManager vm = new VertexManager();
   public static Helpers h = new Helpers();
 
   public static void addEdge(Graph graph, int v1, int v2, int weight) {

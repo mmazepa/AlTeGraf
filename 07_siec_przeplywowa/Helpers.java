@@ -21,6 +21,11 @@ public class Helpers {
     System.out.print("\n");
   }
 
+  public static void breakLine(int times) {
+    for (int i = 0; i < times; i++)
+      breakLine();
+  }
+
   public static void frameIt(String text, Boolean bold) {
     System.out.print(bold ? "   ╔═" : "   ╭─");
     for (int i = 0; i < text.length(); i++) System.out.print(bold ? "═" : "─");
@@ -78,20 +83,26 @@ public class Helpers {
     breakLine();
   }
 
-  public static String setToString(ArrayList<Edge> set) {
-    String setString = "{";
-    for (Edge e : set)
-      setString += "(" + e.getVertex1().getNumber() + "," + e.getVertex2().getNumber() + "),";
-    if (setString.length() > 1)
-      setString = setString.substring(0, setString.length()-1);
-    setString += "}";
-    return setString;
-  }
-
   public static int sumWeights(ArrayList<Edge> edges) {
     int sum = 0;
     for (Edge edge : edges)
       sum += edge.getWeight();
     return sum;
+  }
+
+  public static void displaySet(String setName, int indent, ArrayList<Integer> vertices) {
+    ArrayList<Integer> tmpVertices = new ArrayList<Integer>();
+    tmpVertices.addAll(vertices);
+
+    System.out.print("   " + setName + ":");
+    while (indent > 0) {
+      System.out.print(" ");
+      indent--;
+    }
+    System.out.print("{");
+    System.out.print("v" + tmpVertices.get(0));
+    tmpVertices.remove(0);
+    tmpVertices.forEach(n -> System.out.print(", v" + n));
+    System.out.println("}");
   }
 }

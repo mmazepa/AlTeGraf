@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Stack;
 
 public class App {
 
@@ -7,49 +6,6 @@ public class App {
   public static VertexManager vm = new VertexManager();
   public static EdgeManager em = new EdgeManager();
   public static Helpers h = new Helpers();
-
-  public static Boolean DFS(Vertex start, Vertex end, Stack<Vertex> stack, Boolean[] visited, Graph graph) {
-    visited[start.getNumber()-1] = true;
-    stack.push(start);
-
-    if (start.getNumber() == end.getNumber())
-      return true;
-
-    for (Vertex neighbour : vm.getVertexNeighbours(graph, start)) {
-      if (!visited[neighbour.getNumber()-1]) {
-        if (DFS(neighbour, end, stack, visited, graph))
-          return true;
-      }
-    }
-
-    stack.pop();
-    return false;
-  }
-
-  public static void findPath(Vertex start, Vertex end, Graph graph) {
-    int n = graph.getVertices().size();
-
-    Stack<Vertex> stack = new Stack<Vertex>();
-    Boolean[] visited = new Boolean[n];
-
-    for (int i = 0; i < n; i++)
-      visited[i] = false;
-
-    ArrayList<Vertex> path = new ArrayList<Vertex>();
-
-    if (!DFS(start, end, stack, visited, graph)) {
-      System.out.println("   BRAK DROGI!");
-      h.breakLine();
-      h.exitOnPurpose("Nie istnieje droga między startem a ujściem!");
-    } else {
-      System.out.println("   ISTNIEJE!!");
-      while (!stack.empty()) {
-        Vertex v = stack.pop();
-        path.add(v);
-      }
-      h.displayPath("Przykładowa droga", path);
-    }
-  }
 
   public static int[][] prepareEmptyMatrix(int n) {
     int[][] matrix = new int[n][n];
@@ -65,16 +21,13 @@ public class App {
 
   public static int[][] prepareMatrix(Graph graph) {
     int n = graph.getVertices().size();
-    int[][] matrix = new int[n][n];
-
-    matrix = prepareEmptyMatrix(n);
+    int[][] matrix = prepareEmptyMatrix(n);
 
     for (Edge edge : graph.getEdges()) {
       int v1_index = edge.getVertex1().getNumber()-1;
       int v2_index = edge.getVertex2().getNumber()-1;
       matrix[v1_index][v2_index] = edge.getWeight();
     }
-
     return matrix;
   }
 
@@ -93,7 +46,7 @@ public class App {
       int u = queue.get(0);
       queue.remove(0);
       for (int v = 0; v < n; v++) {
-        if (visited[v] == false && matrix[u][v] > 0) {
+        if (!visited[v] && matrix[u][v] > 0) {
           queue.add(v);
           parent[v] = u;
           visited[v] = true;
@@ -113,12 +66,12 @@ public class App {
         rGraph[u][v] = graph[u][v];
 
     int parent[] = new int[n];
-    int max_flow = 0;
+    int maxFlow = 0;
 
     int counter = 1;
 
     while (BFS(rGraph, s, t, parent)) {
-      int path_flow = Integer.MAX_VALUE;
+      int pathFlow = Integer.MAX_VALUE;
       ArrayList<Vertex> path = new ArrayList<Vertex>();
 
       h.horizontalLine(5+(n*4));
@@ -127,20 +80,19 @@ public class App {
       for (v = t; v != s; v = parent[v]) {
         u = parent[v];
         path.add(new Vertex(u+1));
-        path_flow = Math.min(path_flow, rGraph[u][v]);
+        pathFlow = Math.min(pathFlow, rGraph[u][v]);
       }
       h.displayPath("Ścieżka powiększająca", path);
 
       for (v = t; v != s; v = parent[v]) {
         u = parent[v];
-        rGraph[u][v] -= path_flow;
-        rGraph[v][u] += path_flow;
+        rGraph[u][v] -= pathFlow;
+        rGraph[v][u] += pathFlow;
       }
-      max_flow += path_flow;
+      maxFlow += pathFlow;
 
       h.frameIt("Sieć residualna nr " + (counter++), false);
-      System.out.println("   Aktualny przepływ: " + max_flow);
-      h.breakLine();
+      System.out.println("   Aktualny przepływ: " + maxFlow + "\n");
       h.displayMatrix(rGraph);
       h.breakLine();
     }
@@ -149,18 +101,17 @@ public class App {
     getMinimalSection(g, rGraph, (s+1), (t+1));
     h.breakLine();
 
-    return max_flow;
+    return maxFlow;
   }
 
   public static ArrayList<ArrayList<Integer>> divideVertices(int[][] rGraph, int start, int end) {
     int n = rGraph.length;
     ArrayList<Integer> s = new ArrayList<Integer>();
     ArrayList<Integer> t = new ArrayList<Integer>();
-
-    int limit;
+    int limit = 0;
 
     s.add(start);
-    while (true) {
+    while (limit != s.size()) {
       limit = s.size();
       for (int i = 0; i < limit; i++) {
         for (int j = 0; j < n; j++) {
@@ -168,7 +119,6 @@ public class App {
             s.add(j+1);
         }
       }
-      if (limit == s.size()) break;
     }
 
     if (s.contains(end))
@@ -180,12 +130,8 @@ public class App {
     for (int i = 0; i < s.size(); i++)
       t.remove(new Integer(s.get(i)));
 
-    System.out.print("   X:  ");
-    s.forEach(elem -> System.out.print(" v" + elem));
-    h.breakLine();
-    System.out.print("   V/X:");
-    t.forEach(elem -> System.out.print(" v" + elem));
-    h.breakLine();
+    h.displaySet("X", 3, s);
+    h.displaySet("V/X", 1, t);
 
     ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
     result.add(s);
@@ -214,10 +160,12 @@ public class App {
     }
 
     h.breakLine();
+    System.out.println("   Zbiór łuków:\n");
     em.displayEdges(minimalSection);
-    int capacity = h.sumWeights(minimalSection);
     h.breakLine();
-    System.out.println("   Przepustowość: " + capacity);
+
+    int capacity = h.sumWeights(minimalSection);
+    System.out.println("   Przepustowość przekroju: " + capacity);
   }
 
   public static void main(String args[]) {
@@ -252,20 +200,22 @@ public class App {
     h.breakLine();
     System.out.print("   Ujście: ");
     end.show();
-    h.breakLine();
-    h.breakLine();
+    h.breakLine(2);
     h.frameIt("Czy istnieje droga między startem a ujściem?", false);
-    h.breakLine();
-
-    findPath(start, end, graph);
     h.breakLine();
 
     int[][] matrix = new int[n][n];
     matrix = prepareMatrix(graph);
 
+    if (BFS(matrix, start.getNumber()-1, end.getNumber()-1, new int[n])) {
+      System.out.println("   ISTNIEJE!\n");
+    } else {
+      System.out.println("   BRAK DROGI!\n");
+      h.exitOnPurpose("Brak drogi między startem a ujściem.");
+    }
+
     h.frameIt("Macierz przepustowości", false);
-    System.out.println("   Aktualny przepływ: " + 0);
-    h.breakLine();
+    System.out.println("   Aktualny przepływ: " + 0 + "\n");
     h.displayMatrix(matrix);
     h.breakLine();
 
