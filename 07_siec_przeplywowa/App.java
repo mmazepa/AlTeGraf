@@ -78,6 +78,60 @@ public class App {
     return matrix;
   }
 
+  public static Boolean BFS(int[][] matrix, int s, int t, int parent[]) {
+    int n = matrix.length;
+    boolean visited[] = new boolean[n];
+    for (int i = 0; i < n; ++i)
+      visited[i] = false;
+
+    ArrayList<Integer> queue = new ArrayList<Integer>();
+    queue.add(s);
+    visited[s] = true;
+    parent[s] = -1;
+
+    while (queue.size() != 0) {
+      int u = queue.get(0);
+      queue.remove(0);
+      for (int v = 0; v < n; v++) {
+        if (visited[v] == false && matrix[u][v] > 0) {
+          queue.add(v);
+          parent[v] = u;
+          visited[v] = true;
+        }
+      }
+    }
+    return (visited[t] == true);
+  }
+
+  public static int getMaxFlow(int graph[][], int s, int t) {
+    int u, v;
+    int n = graph.length;
+    int rGraph[][] = new int[n][n];
+
+    for (u = 0; u < n; u++)
+      for (v = 0; v < n; v++)
+        rGraph[u][v] = graph[u][v];
+
+    int parent[] = new int[n];
+    int max_flow = 0;
+
+    while (BFS(rGraph, s, t, parent)) {
+      int path_flow = Integer.MAX_VALUE;
+      for (v=t; v != s; v = parent[v]) {
+        u = parent[v];
+        path_flow = Math.min(path_flow, rGraph[u][v]);
+      }
+
+      for (v = t; v != s; v = parent[v]) {
+        u = parent[v];
+        rGraph[u][v] -= path_flow;
+        rGraph[v][u] += path_flow;
+      }
+      max_flow += path_flow;
+    }
+    return max_flow;
+  }
+
   public static void main(String args[]) {
     h.clearScreen();
     h.breakLine();
@@ -122,6 +176,10 @@ public class App {
     h.frameIt("Macierz przepustowości", false);
     h.breakLine();
     h.displayMatrix(matrix);
+    h.breakLine();
+
+    int maxFlow = getMaxFlow(matrix, start.getNumber()-1, end.getNumber()-1);
+    h.frameIt("Maksymalny przepływ: " + maxFlow, true);
     h.breakLine();
   }
 }
