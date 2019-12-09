@@ -103,6 +103,17 @@ public class App {
     return (visited[t] == true);
   }
 
+  // public static int sumMatrix(int matrix[][]) {
+  //   int n = matrix.length;
+  //   int sum = 0;
+  //   for (int i = 0; i < n; i++) {
+  //     for (int j = 0; j < n; j++) {
+  //       sum += matrix[i][j];
+  //     }
+  //   }
+  //   return sum;
+  // }
+
   public static int getMaxFlow(int graph[][], int s, int t) {
     int u, v;
     int n = graph.length;
@@ -115,12 +126,20 @@ public class App {
     int parent[] = new int[n];
     int max_flow = 0;
 
+    int counter = 1;
+
     while (BFS(rGraph, s, t, parent)) {
       int path_flow = Integer.MAX_VALUE;
-      for (v=t; v != s; v = parent[v]) {
+      ArrayList<Vertex> path = new ArrayList<Vertex>();
+
+      h.horizontalLine(5+(n*4));
+      path.add(new Vertex(t+1));
+      for (v = t; v != s; v = parent[v]) {
         u = parent[v];
+        path.add(new Vertex(u+1));
         path_flow = Math.min(path_flow, rGraph[u][v]);
       }
+      h.displayPath("Ścieżka powiększająca", path);
 
       for (v = t; v != s; v = parent[v]) {
         u = parent[v];
@@ -128,6 +147,15 @@ public class App {
         rGraph[v][u] += path_flow;
       }
       max_flow += path_flow;
+
+      h.frameIt("Sieć residualna nr " + (counter), false);
+      System.out.println("   Aktualny przepływ [" + counter + "]: " + max_flow);
+      h.breakLine();
+      h.displayMatrix(rGraph);
+      // System.out.println("   Suma: " + sumMatrix(rGraph));
+      h.horizontalLine(5+(n*4));
+      h.breakLine();
+      counter++;
     }
     return max_flow;
   }

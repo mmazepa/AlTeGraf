@@ -62,4 +62,13 @@ public class Helpers {
       breakLine();
     }
   }
+
+  public static void horizontalLine(int length) {
+    System.out.print("   ");
+    while (length > 0) {
+      System.out.print("┄");
+      length--;
+    }
+    breakLine();
+  }
 }
