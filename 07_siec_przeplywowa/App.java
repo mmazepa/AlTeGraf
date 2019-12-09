@@ -67,7 +67,7 @@ public class App {
     int n = graph.getVertices().size();
     int[][] matrix = new int[n][n];
 
-    matrix = prepareEmptyMatrix(graph.getVertices().size());
+    matrix = prepareEmptyMatrix(n);
 
     for (Edge edge : graph.getEdges()) {
       int v1_index = edge.getVertex1().getNumber()-1;
@@ -103,18 +103,7 @@ public class App {
     return (visited[t] == true);
   }
 
-  // public static int sumMatrix(int matrix[][]) {
-  //   int n = matrix.length;
-  //   int sum = 0;
-  //   for (int i = 0; i < n; i++) {
-  //     for (int j = 0; j < n; j++) {
-  //       sum += matrix[i][j];
-  //     }
-  //   }
-  //   return sum;
-  // }
-
-  public static int getMaxFlow(int graph[][], int s, int t) {
+  public static int getMaxFlow(Graph g, int graph[][], int s, int t) {
     int u, v;
     int n = graph.length;
     int rGraph[][] = new int[n][n];
@@ -133,6 +122,7 @@ public class App {
       ArrayList<Vertex> path = new ArrayList<Vertex>();
 
       h.horizontalLine(5+(n*4));
+      h.breakLine();
       path.add(new Vertex(t+1));
       for (v = t; v != s; v = parent[v]) {
         u = parent[v];
@@ -148,16 +138,86 @@ public class App {
       }
       max_flow += path_flow;
 
-      h.frameIt("Sieć residualna nr " + (counter), false);
-      System.out.println("   Aktualny przepływ [" + counter + "]: " + max_flow);
+      h.frameIt("Sieć residualna nr " + (counter++), false);
+      System.out.println("   Aktualny przepływ: " + max_flow);
       h.breakLine();
       h.displayMatrix(rGraph);
-      // System.out.println("   Suma: " + sumMatrix(rGraph));
-      h.horizontalLine(5+(n*4));
       h.breakLine();
-      counter++;
     }
+
+    h.frameIt("Minimalny przekrój", false);
+    getMinimalSection(g, rGraph, (s+1), (t+1));
+    h.breakLine();
+
     return max_flow;
+  }
+
+  public static ArrayList<ArrayList<Integer>> divideVertices(int[][] rGraph, int start, int end) {
+    int n = rGraph.length;
+    ArrayList<Integer> s = new ArrayList<Integer>();
+    ArrayList<Integer> t = new ArrayList<Integer>();
+
+    int limit;
+
+    s.add(start);
+    while (true) {
+      limit = s.size();
+      for (int i = 0; i < limit; i++) {
+        for (int j = 0; j < n; j++) {
+          if (rGraph[i][j] > 0 && !s.contains(j+1))
+            s.add(j+1);
+        }
+      }
+      if (limit == s.size()) break;
+    }
+
+    if (s.contains(end))
+      s.remove(new Integer(end));
+
+    for (int i = 0; i < n; i++)
+      t.add((i+1));
+
+    for (int i = 0; i < s.size(); i++)
+      t.remove(new Integer(s.get(i)));
+
+    System.out.print("   X:  ");
+    s.forEach(elem -> System.out.print(" v" + elem));
+    h.breakLine();
+    System.out.print("   V/X:");
+    t.forEach(elem -> System.out.print(" v" + elem));
+    h.breakLine();
+
+    ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+    result.add(s);
+    result.add(t);
+
+    return result;
+  }
+
+  public static void getMinimalSection(Graph graph, int[][] rGraph, int start, int end) {
+    ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+    result = divideVertices(rGraph, start, end);
+
+    ArrayList<Integer> s = result.get(0);
+    ArrayList<Integer> t = result.get(1);
+
+    ArrayList<Edge> minimalSection = new ArrayList<Edge>();
+
+    for (Edge edge : graph.getEdges()) {
+      for (int s_num : s) {
+        for (int t_num : t) {
+          if (edge.getVertex1().getNumber() == s_num && edge.getVertex2().getNumber() == t_num) {
+            minimalSection.add(edge);
+          }
+        }
+      }
+    }
+
+    h.breakLine();
+    em.displayEdges(minimalSection);
+    int capacity = h.sumWeights(minimalSection);
+    h.breakLine();
+    System.out.println("   Przepustowość: " + capacity);
   }
 
   public static void main(String args[]) {
@@ -193,7 +253,8 @@ public class App {
     System.out.print("   Ujście: ");
     end.show();
     h.breakLine();
-    System.out.println("   Czy istnieje droga między startem a ujściem?");
+    h.breakLine();
+    h.frameIt("Czy istnieje droga między startem a ujściem?", false);
     h.breakLine();
 
     findPath(start, end, graph);
@@ -201,12 +262,14 @@ public class App {
 
     int[][] matrix = new int[n][n];
     matrix = prepareMatrix(graph);
+
     h.frameIt("Macierz przepustowości", false);
+    System.out.println("   Aktualny przepływ: " + 0);
     h.breakLine();
     h.displayMatrix(matrix);
     h.breakLine();
 
-    int maxFlow = getMaxFlow(matrix, start.getNumber()-1, end.getNumber()-1);
+    int maxFlow = getMaxFlow(graph, matrix, start.getNumber()-1, end.getNumber()-1);
     h.frameIt("Maksymalny przepływ: " + maxFlow, true);
     h.breakLine();
   }

@@ -64,11 +64,34 @@ public class Helpers {
   }
 
   public static void horizontalLine(int length) {
-    System.out.print("   ");
-    while (length > 0) {
-      System.out.print("┄");
+    String segment = "╌◇╌◆";
+    int counter = 0;
+    int segLen = segment.length();
+
+    System.out.print("   ▸");
+    while ((length-2) > 0) {
+      System.out.print(segment.charAt(counter % segLen));
       length--;
+      counter++;
     }
+    System.out.print("◂");
     breakLine();
+  }
+
+  public static String setToString(ArrayList<Edge> set) {
+    String setString = "{";
+    for (Edge e : set)
+      setString += "(" + e.getVertex1().getNumber() + "," + e.getVertex2().getNumber() + "),";
+    if (setString.length() > 1)
+      setString = setString.substring(0, setString.length()-1);
+    setString += "}";
+    return setString;
+  }
+
+  public static int sumWeights(ArrayList<Edge> edges) {
+    int sum = 0;
+    for (Edge edge : edges)
+      sum += edge.getWeight();
+    return sum;
   }
 }
