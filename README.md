@@ -22,14 +22,17 @@ w ramach przedmiotu Algorytmiczna Teoria Grafów w roku akademickim 2019/2020.
    <tr>
     <td>2</td>
     <td>
-      Czy graf zawiera podgraf izomorficzny do cyklu C3? Wersja naiwna (+1 pkt),
-      wersja w oparciu o mnożenie macierzy (+1 pkt).
+      Czy graf zawiera podgraf izomorficzny do cyklu C3?
+      <u>Wersja naiwna</u> (+1 pkt), wersja w oparciu o
+      mnożenie macierzy (+1 pkt).
     </td>
     <td>1/2 pkt</td>
   </tr>
   <tr>
     <td>3</td>
-    <td>Ciąg grafowy. Tak/nie (+1 pkt), zwraca graf prosty (+2 pkt).</td>
+    <td>
+      <u>Ciąg grafowy. Tak/nie</u> (+1 pkt), zwraca graf prosty (+2 pkt).
+    </td>
     <td>1/3 pkt</td>
   </tr>
   <tr>
@@ -51,7 +54,7 @@ w ramach przedmiotu Algorytmiczna Teoria Grafów w roku akademickim 2019/2020.
   <tr>
     <td>2</td>
     <td>
-      Algorytm Jordana, centrum drzewa (wersja naiwna - 3 pkt,
+      Algorytm Jordana, centrum drzewa (<u>wersja naiwna</u> - 3 pkt,
       czas liniowy - 5 pkt).
     </td>
     <td>3/5 pkt</td>
@@ -96,8 +99,8 @@ w ramach przedmiotu Algorytmiczna Teoria Grafów w roku akademickim 2019/2020.
     <td rowspan="1">6</td>
     <td rowspan="1">03.12.2019</td>
     <td>1</td>
-    <td>Sieć skierowana (9 pkt) LUB Algorytm Dijkstry (7 pkt).</td>
-    <td>5/7 pkt</td>
+    <td>Sieć skierowana (9 pkt) LUB <u>Algorytm Dijkstry</u> (7 pkt).</td>
+    <td>5/9 pkt</td>
     <td rowspan="1">5/9 pkt</td>
   </tr>
   <tr>
@@ -105,8 +108,8 @@ w ramach przedmiotu Algorytmiczna Teoria Grafów w roku akademickim 2019/2020.
     <td rowspan="3">10.12.2019</td>
     <td>1</td>
     <td>Wprowadzenie sieci i maksymalny przepływ.</td>
-    <td>0/5 pkt</td>
-    <td rowspan="3">0/14 pkt</td>
+    <td>5/5 pkt</td>
+    <td rowspan="3">9/14 pkt</td>
   </tr>
   <tr>
     <td>2</td>
@@ -116,9 +119,9 @@ w ramach przedmiotu Algorytmiczna Teoria Grafów w roku akademickim 2019/2020.
   <tr>
     <td>3</td>
     <td>Minimalny przekrój (zbiór łuków).</td>
-    <td>0/4 pkt</td>
+    <td>4/4 pkt</td>
   </tr>
-    <tr>
+  <tr>
     <td rowspan="1">8</td>
     <td rowspan="1">17.12.2019</td>
     <td>1</td>
@@ -129,16 +132,24 @@ w ramach przedmiotu Algorytmiczna Teoria Grafów w roku akademickim 2019/2020.
     <td>0/5 pkt</td>
     <td rowspan="1">0/5 pkt</td>
   </tr>
+  <tr>
+    <td rowspan="1">9</td>
+    <td rowspan="1">14.01.2020</td>
+    <td>1</td>
+    <td>Algorytm Fleury'ego (szukanie cyklu Eulera).</td>
+    <td>0/5 pkt</td>
+    <td rowspan="1">0/5 pkt</td>
+  </tr>
   <tr align="right">
     <td colspan="5"><b>OGÓŁEM:</b></td>
-    <td>35/63 pkt</td>
+    <td>44/68 pkt</td>
   </tr>
   <tr align="right">
     <td colspan="5"><b>PROCENT:</b></td>
-    <td>55.56%</td>
+    <td>64.71%</td>
   </tr>
   <tr align="right">
     <td colspan="5"><b>OCENA:</b></td>
-    <td>3.0</td>
+    <td>3.5</td>
   </tr>
 </table>

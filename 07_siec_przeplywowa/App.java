@@ -211,7 +211,7 @@ public class App {
       System.out.println("   ISTNIEJE!\n");
     } else {
       System.out.println("   BRAK DROGI!\n");
-      h.exitOnPurpose("Brak drogi między startem a ujściem.");
+      h.exitOnPurpose("Brak drogi między startem a ujściem!");
     }
 
     h.frameIt("Macierz przepustowości", false);
