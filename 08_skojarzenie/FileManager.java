@@ -6,7 +6,6 @@ import java.util.ArrayList;
 public class FileManager {
 
   public static VertexManager vm = new VertexManager();
-  public static EdgeManager em = new EdgeManager();
   public static Helpers h = new Helpers();
 
   public static Graph prepareGraph(String fileName) {
@@ -31,12 +30,7 @@ public class FileManager {
           }
         } else {
           String[] parts = line.split("->");
-          // String[] parts2 = parts[1].split(" : ");
-
-          // if (Integer.parseInt(parts2[1]) <= 0)
-          //   h.exitOnPurpose("Wszystkie wagi muszą być dodatnie!");
-
-          em.addEdge(graph, Integer.parseInt(parts[0]), Integer.parseInt(parts[1]));
+          vm.connectNeighbours(graph, Integer.parseInt(parts[0]), Integer.parseInt(parts[1]));
         }
         counter++;
       }

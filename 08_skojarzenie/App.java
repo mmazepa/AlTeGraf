@@ -4,8 +4,11 @@ public class App {
 
   public static FileManager fm = new FileManager();
   public static VertexManager vm = new VertexManager();
-  public static EdgeManager em = new EdgeManager();
   public static Helpers h = new Helpers();
+
+  public static void checkBipartiteness() {
+    // ...
+  }
 
   public static void main(String args[]) {
     h.clearScreen();
@@ -23,10 +26,10 @@ public class App {
 
     h.frameIt("Graf Wejściowy", false);
     h.breakLine();
-    System.out.println("   Wierzchołków: " + String.format("%2d", graph.getVertices().size()));
-    System.out.println("   Krawędzi:     " + String.format("%2d", graph.getEdges().size()));
-    h.breakLine();
-    em.displayEdges(graph.getEdges());
+    for (Vertex vertex : graph.getVertices()) {
+      vertex.show();
+      h.breakLine();
+    }
     h.breakLine();
   }
 }
