@@ -23,15 +23,15 @@ w ramach przedmiotu Algorytmiczna Teoria Grafów w roku akademickim 2019/2020.
     <td>2</td>
     <td>
       Czy graf zawiera podgraf izomorficzny do cyklu C3?
-      Wersja naiwna (+1 pkt), ~~wersja w oparciu o
-      mnożenie macierzy (+1 pkt)~~.
+      **Wersja naiwna (+1 pkt)**, wersja w oparciu o
+      mnożenie macierzy (+1 pkt).
     </td>
     <td>1/2 pkt</td>
   </tr>
   <tr>
     <td>3</td>
     <td>
-      Ciąg grafowy. Tak/nie (+1 pkt), ~~zwraca graf prosty (+2 pkt)~~.
+      **Ciąg grafowy. Tak/nie (+1 pkt)**, zwraca graf prosty (+2 pkt).
     </td>
     <td>1/3 pkt</td>
   </tr>
@@ -54,8 +54,8 @@ w ramach przedmiotu Algorytmiczna Teoria Grafów w roku akademickim 2019/2020.
   <tr>
     <td>2</td>
     <td>
-      Algorytm Jordana, centrum drzewa (wersja naiwna - 3 pkt,
-      ~~czas liniowy - 5 pkt~~).
+      Algorytm Jordana, centrum drzewa (**wersja naiwna - 3 pkt**,
+      czas liniowy - 5 pkt).
     </td>
     <td>3/5 pkt</td>
   </tr>
@@ -99,7 +99,7 @@ w ramach przedmiotu Algorytmiczna Teoria Grafów w roku akademickim 2019/2020.
     <td rowspan="1">6</td>
     <td rowspan="1">03.12.2019</td>
     <td>1</td>
-    <td>~~Sieć skierowana (9 pkt)~~ LUB Algorytm Dijkstry (7 pkt).</td>
+    <td>Sieć skierowana (9 pkt) LUB **Algorytm Dijkstry (7 pkt)**.</td>
     <td>5/9 pkt</td>
     <td rowspan="1">5/9 pkt</td>
   </tr>
