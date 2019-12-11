@@ -37,9 +37,18 @@ public class Helpers {
   }
 
   public static void displayMatrix(int[][] matrix) {
+    int s = matrix.length-2;
+    int t = matrix.length-1;
+
     System.out.print("       │");
-    for (int i = 0; i < matrix.length; i++)
-      System.out.print(String.format("%3s", "v" + (i+1)) + " ");
+    for (int i = 0; i < matrix.length; i++) {
+      if (i == s)
+        System.out.print(String.format("%4s", "s "));
+      else if (i == t)
+        System.out.print(String.format("%4s", "t "));
+      else
+        System.out.print(String.format("%3s", "v" + (i+1)) + " ");
+    }
     breakLine();
 
     System.out.print("   ────┼");
@@ -48,7 +57,13 @@ public class Helpers {
     breakLine();
 
     for (int i = 0; i < matrix.length; i++) {
-      System.out.print("   " + String.format("%3s", "v" + (i+1)) + " │");
+      if (i == s)
+        System.out.print("   " + String.format("%3s", " s") + " │");
+      else if (i == t)
+        System.out.print("   " + String.format("%3s", " t") + " │");
+      else
+        System.out.print("   " + String.format("%3s", "v" + (i+1)) + " │");
+
       for (int j = 0; j < matrix.length; j++)
         System.out.print(String.format("%3s", matrix[i][j]) + " ");
       breakLine();
