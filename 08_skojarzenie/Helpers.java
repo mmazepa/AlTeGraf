@@ -21,11 +21,6 @@ public class Helpers {
     System.out.print("\n");
   }
 
-  public static void breakLine(int times) {
-    for (int i = 0; i < times; i++)
-      breakLine();
-  }
-
   public static void frameIt(String text, Boolean bold) {
     System.out.print(bold ? "   ╔═" : "   ╭─");
     for (int i = 0; i < text.length(); i++) System.out.print(bold ? "═" : "─");
@@ -34,6 +29,21 @@ public class Helpers {
     System.out.print(bold ? "   ╚═" : "   ╰─");
     for (int i = 0; i < text.length(); i++) System.out.print(bold ? "═" : "─");
     System.out.print(bold ? "═╝\n" : "─╯\n");
+  }
+
+  public static void displayPath(String pathName, ArrayList<Vertex> path) {
+    System.out.println("   " + pathName + ":");
+    Collections.reverse(path);
+
+    System.out.print("      ");
+    System.out.print("s");
+    for (int i = 1; i < path.size()-1; i++) {
+      System.out.print(" -> ");
+      System.out.print("v" + path.get(i).getNumber());
+    }
+    System.out.print(" -> ");
+    System.out.print("t");
+    breakLine();
   }
 
   public static void displayMatrix(int[][] matrix) {
@@ -91,6 +101,32 @@ public class Helpers {
     System.out.print(String.format("%3d", tab[0]));
     for (int i = 1; i < n; i++)
       System.out.print(String.format(" │%3d", tab[i]));
+    breakLine();
+  }
+
+  public static void displaySet(String setName, ArrayList<Integer> vertices) {
+    ArrayList<Integer> tmpVertices = new ArrayList<Integer>();
+    tmpVertices.addAll(vertices);
+
+    System.out.print("   " + setName + ": {");
+    System.out.print("v" + tmpVertices.get(0));
+    tmpVertices.remove(0);
+    tmpVertices.forEach(n -> System.out.print(", v" + n));
+    System.out.println("}");
+  }
+
+  public static void horizontalLine(int length) {
+    String segment = "╌◇╌◆";
+    int counter = 0;
+    int segLen = segment.length();
+
+    System.out.print("   ▸");
+    while ((length-2) > 0) {
+      System.out.print(segment.charAt(counter % segLen));
+      length--;
+      counter++;
+    }
+    System.out.print("◂");
     breakLine();
   }
 }
