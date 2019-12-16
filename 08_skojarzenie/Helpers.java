@@ -46,12 +46,23 @@ public class Helpers {
     breakLine();
   }
 
-  public static void displayMatrix(int[][] matrix) {
-    int s = matrix.length-2;
-    int t = matrix.length-1;
+  public static void displayMatrix(int[][] matrix, Boolean realVerticesOnly) {
+    int s;
+    int t;
+    int n;
+
+    if (!realVerticesOnly) {
+      s = matrix.length-2;
+      t = matrix.length-1;
+      n = matrix.length;
+    } else {
+      s = -1;
+      t = -1;
+      n = matrix.length-2;
+    }
 
     System.out.print("       │");
-    for (int i = 0; i < matrix.length; i++) {
+    for (int i = 0; i < n; i++) {
       if (i == s)
         System.out.print(String.format("%4s", "s "));
       else if (i == t)
@@ -62,11 +73,11 @@ public class Helpers {
     breakLine();
 
     System.out.print("   ────┼");
-    for (int i = 0; i < matrix.length; i++)
+    for (int i = 0; i < n; i++)
       System.out.print("────");
     breakLine();
 
-    for (int i = 0; i < matrix.length; i++) {
+    for (int i = 0; i < n; i++) {
       if (i == s)
         System.out.print("   " + String.format("%3s", " s") + " │");
       else if (i == t)
@@ -74,7 +85,7 @@ public class Helpers {
       else
         System.out.print("   " + String.format("%3s", "v" + (i+1)) + " │");
 
-      for (int j = 0; j < matrix.length; j++)
+      for (int j = 0; j < n; j++)
         System.out.print(String.format("%3s", matrix[i][j]) + " ");
       breakLine();
     }
@@ -82,8 +93,8 @@ public class Helpers {
 
   public static void showTab(int tab[]) {
     int n = tab.length;
-    System.out.print("   ");
-    System.out.print(String.format("%3s", "v" + 1));
+
+    System.out.print("   " + String.format("%3s", "v" + 1));
     for (int i = 1; i < n; i++)
       System.out.print(String.format(" │%3s", "v" + (i+1)));
     breakLine();
@@ -97,8 +108,7 @@ public class Helpers {
     }
     breakLine();
 
-    System.out.print("   ");
-    System.out.print(String.format("%3d", tab[0]));
+    System.out.print("   " + String.format("%3d", tab[0]));
     for (int i = 1; i < n; i++)
       System.out.print(String.format(" │%3d", tab[i]));
     breakLine();
@@ -108,8 +118,7 @@ public class Helpers {
     ArrayList<Integer> tmpVertices = new ArrayList<Integer>();
     tmpVertices.addAll(vertices);
 
-    System.out.print("   " + setName + ": {");
-    System.out.print("v" + tmpVertices.get(0));
+    System.out.print("   " + setName + ": {v" + tmpVertices.get(0));
     tmpVertices.remove(0);
     tmpVertices.forEach(n -> System.out.print(", v" + n));
     System.out.println("}");
@@ -118,13 +127,11 @@ public class Helpers {
   public static void horizontalLine(int length) {
     String segment = "╌◇╌◆";
     int counter = 0;
-    int segLen = segment.length();
 
     System.out.print("   ▸");
     while ((length-2) > 0) {
-      System.out.print(segment.charAt(counter % segLen));
+      System.out.print(segment.charAt(counter++ % segment.length()));
       length--;
-      counter++;
     }
     System.out.print("◂");
     breakLine();

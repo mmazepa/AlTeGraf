@@ -7,8 +7,7 @@ public class App {
   public static Helpers h = new Helpers();
 
   public static void resetTable(int tab[]) {
-    int n = tab.length;
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < tab.length; i++)
       tab[i] = 0;
   }
 
@@ -125,11 +124,22 @@ public class App {
 
       h.frameIt("Sieć residualna nr " + (counter++), false);
       System.out.println("   Aktualny przepływ: " + maxFlow + "\n");
-      h.displayMatrix(rGraph);
+      h.displayMatrix(rGraph, false);
       h.breakLine();
     }
 
     return maxFlow;
+  }
+
+  public static void getMaxMatching(int flowMatrix[][], int matrix[][], ArrayList<Integer> first, int n) {
+    int counter = 1;
+
+    for (int v_num : first) {
+      for (int i = 0; i < n; i++) {
+        if (flowMatrix[v_num-1][i] == matrix[v_num-1][i] && flowMatrix[v_num-1][i] == 1)
+          System.out.println("   [" + (counter++) + "] : (v" + v_num + " -> v" + (i+1) + ")");
+      }
+    }
   }
 
   public static void main(String args[]) {
@@ -198,7 +208,7 @@ public class App {
     for (int v_num : second)
       matrix[v_num-1][n+1] = 1;
 
-    h.displayMatrix(matrix);
+    h.displayMatrix(matrix, false);
     h.breakLine();
 
     int flowMatrix[][] = prepareEmptyMatrix(n+2);
@@ -212,14 +222,10 @@ public class App {
     h.frameIt("Skojarzenie maksymalne", false);
     h.breakLine();
 
-    int counter = 1;
+    h.displayMatrix(flowMatrix, true);
+    h.breakLine();
 
-    for (int v_num : first) {
-      for (int i = 0; i < n; i++) {
-        if (flowMatrix[v_num-1][i] == matrix[v_num-1][i] && flowMatrix[v_num-1][i] == 1)
-          System.out.println("   [" + (counter++) + "] : (v" + v_num + " -> v" + (i+1) + ")");
-      }
-    }
+    getMaxMatching(flowMatrix, matrix, first, n);
     h.breakLine();
   }
 }
