@@ -59,6 +59,11 @@ public class App {
 
     h.displaySet("A", first);
     h.displaySet("B", second);
+
+    if (second.isEmpty()) {
+      h.breakLine();
+      h.exitOnPurpose("Zbiór B jest pusty, brak krawędzi, brak skojarzenia!");
+    }
   }
 
   public static Boolean BFS(int[][] matrix, int s, int t, int parent[]) {

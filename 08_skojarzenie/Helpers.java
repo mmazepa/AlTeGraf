@@ -118,9 +118,12 @@ public class Helpers {
     ArrayList<Integer> tmpVertices = new ArrayList<Integer>();
     tmpVertices.addAll(vertices);
 
-    System.out.print("   " + setName + ": {v" + tmpVertices.get(0));
-    tmpVertices.remove(0);
-    tmpVertices.forEach(n -> System.out.print(", v" + n));
+    System.out.print("   " + setName + ": {");
+    if (!vertices.isEmpty()) {
+      System.out.print("v" + tmpVertices.get(0));
+      tmpVertices.remove(0);
+      tmpVertices.forEach(n -> System.out.print(", v" + n));
+    }
     System.out.println("}");
   }
 
