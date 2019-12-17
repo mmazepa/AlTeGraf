@@ -129,8 +129,8 @@ w ramach przedmiotu Algorytmiczna Teoria Grafów w roku akademickim 2019/2020.
       Czy graf jest dwudzielny? Skojarzenie maksymalne
       metodą szukania maksymalnego przepływu.
     </td>
-    <td>0/5 pkt</td>
-    <td rowspan="1">0/5 pkt</td>
+    <td>5/5 pkt</td>
+    <td rowspan="1">5/5 pkt</td>
   </tr>
   <tr>
     <td rowspan="1">9</td>
@@ -142,14 +142,14 @@ w ramach przedmiotu Algorytmiczna Teoria Grafów w roku akademickim 2019/2020.
   </tr>
   <tr align="right">
     <td colspan="5"><b>OGÓŁEM:</b></td>
-    <td>44/68 pkt</td>
+    <td>49/68 pkt</td>
   </tr>
   <tr align="right">
     <td colspan="5"><b>PROCENT:</b></td>
-    <td>64.71%</td>
+    <td>72.06%</td>
   </tr>
   <tr align="right">
     <td colspan="5"><b>OCENA:</b></td>
-    <td>3.5</td>
+    <td>4.0</td>
   </tr>
 </table>
