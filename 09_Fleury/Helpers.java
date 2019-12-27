@@ -31,21 +31,6 @@ public class Helpers {
     System.out.print(bold ? "═╝\n" : "─╯\n");
   }
 
-  public static void displayPath(String pathName, ArrayList<Vertex> path) {
-    System.out.println("   " + pathName + ":");
-    Collections.reverse(path);
-
-    System.out.print("      ");
-    System.out.print("s");
-    for (int i = 1; i < path.size()-1; i++) {
-      System.out.print(" -> ");
-      System.out.print("v" + path.get(i).getNumber());
-    }
-    System.out.print(" -> ");
-    System.out.print("t");
-    breakLine();
-  }
-
   public static void displayMatrix(int[][] matrix) {
     int n = matrix.length;
 
@@ -65,5 +50,28 @@ public class Helpers {
         System.out.print(String.format("%3s", matrix[i][j]) + " ");
       breakLine();
     }
+  }
+
+  public static void showTab(int tab[]) {
+    int n = tab.length;
+
+    System.out.print("         v" + String.format(" │%3s", "v" + 1));
+    for (int i = 1; i < n; i++)
+      System.out.print(String.format(" │%3s", "v" + (i+1)));
+    breakLine();
+
+    System.out.print("   ────");
+    for (int i = 0; i < (n*5)-1+6-1; i++) {
+      if ((i+1)%5 == 0)
+        System.out.print("┼");
+      else
+        System.out.print("─");
+    }
+    breakLine();
+
+    System.out.print("    deg(v)" + String.format(" │%3d", tab[0]));
+    for (int i = 1; i < n; i++)
+      System.out.print(String.format(" │%3d", tab[i]));
+    breakLine();
   }
 }

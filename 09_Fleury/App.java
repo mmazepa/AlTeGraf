@@ -123,6 +123,23 @@ public class App {
     return true;
   }
 
+  public static Boolean allVerticesEvenDegree(Graph graph) {
+    int n = graph.getVertices().size();
+    int[] degrees = new int[n];
+
+    for (int i = 0; i < n; i++) degrees[i] = 0;
+
+    for (Vertex vertex : graph.getVertices())
+      degrees[vertex.getNumber()-1] = vertex.getNeighbours().size();
+
+    h.showTab(degrees);
+    h.breakLine();
+
+    for (int i = 0; i < degrees.length; i++)
+      if (degrees[i]%2 != 0) return false;
+    return true;
+  }
+
   public static void main(String args[]) {
     h.clearScreen();
     h.breakLine();
@@ -145,38 +162,48 @@ public class App {
     }
     h.breakLine();
 
-    int n = graph.getVertices().size();
-    int[][] matrix = prepareEmptyMatrix(n);
+    if (!allVerticesEvenDegree(graph)) {
+      System.out.println("   Nie wszystkie wierzchołki są stopnia parzystego!");
+      h.breakLine();
+      h.frameIt("Graf nie posiada cyklu Eulera!", true);
+      h.breakLine();
+    } else {
+      System.out.println("   Wszystkie wierzchołki są stopnia parzystego!");
+      h.breakLine();
 
-    fillMatrix(graph, matrix);
+      int n = graph.getVertices().size();
+      int[][] matrix = prepareEmptyMatrix(n);
 
-    h.frameIt("Macierz Sąsiedztwa", false);
-    h.breakLine();
+      fillMatrix(graph, matrix);
 
-    System.out.println("   OZNACZENIE:");
-    System.out.println("      1 - krawędź");
-    System.out.println("      2 - krawędź, która jest mostem");
-    h.breakLine();
+      h.frameIt("Macierz Sąsiedztwa", false);
+      h.breakLine();
 
-    h.displayMatrix(matrix);
-    h.breakLine();
+      System.out.println("   OZNACZENIE:");
+      System.out.println("      1 - krawędź");
+      System.out.println("      2 - krawędź, która jest mostem");
+      h.breakLine();
 
-    int counter = 1;
-    Vertex start = graph.getVertices().get(0);
-    while (start.getNeighbours().size() == 0)
+      h.displayMatrix(matrix);
+      h.breakLine();
+
+      int counter = 1;
+      Vertex start = graph.getVertices().get(0);
+      while (start.getNeighbours().size() == 0)
       start = graph.getVertices().get(counter++);
 
-    Stack<Integer> stack = theFleuryAlgorithm(start.getNumber()-1, n, matrix);
+      Stack<Integer> stack = theFleuryAlgorithm(start.getNumber()-1, n, matrix);
 
-    if (allEdgesUsed(matrix)) {
-      String stackStr = "CYKL EULERA |";
-      stackStr += (" v" + (stack.elementAt(0)+1));
-      for (int i = 1; i < stack.size(); i++)
-      stackStr += (" v" + (stack.elementAt(i)+1));
-      h.frameIt(stackStr, true);
-    } else {
-      h.frameIt("Nie znaleziono cyklu Eulera!", true);
+      if (allEdgesUsed(matrix)) {
+        String stackStr = "CYKL EULERA |";
+        stackStr += (" v" + (stack.elementAt(0)+1));
+        for (int i = 1; i < stack.size(); i++)
+        stackStr += (" v" + (stack.elementAt(i)+1));
+        h.frameIt(stackStr, true);
+      } else {
+        h.frameIt("Nie znaleziono cyklu Eulera!", true);
+      }
+      h.breakLine();
     }
-    h.breakLine();
   }
 }
