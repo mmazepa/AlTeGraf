@@ -89,17 +89,38 @@ public class App {
 
       cv = 1;
       DFSb(v, -1, matrix, D, cv);
-      while ((matrix[v][u] == 2) && (getNeighbours(v, matrix).size() > 1))
-        u = getNeighbours(v, matrix).get(1);
+
+      int counter = 1;
+      ArrayList<Integer> vNeighbours = getNeighbours(v, matrix);
+
+      while ((matrix[v][u] == 2) && (vNeighbours.size() > 1)) {
+        u = vNeighbours.get(counter++);
+        if (counter == vNeighbours.size()) {
+          System.out.println("   KONIEC: Każdy kolejny krok rozspójni graf.");
+          h.breakLine();
+          return stack;
+        }
+      }
 
       removeEdge(v, u, matrix);
 
       System.out.println("   EDGE = (v" + (v+1) + "->v" + (u+1) + ")");
+      h.breakLine();
       h.displayMatrix(matrix);
       h.breakLine();
 
       v = u;
     }
+  }
+
+  public static Boolean allEdgesUsed(int[][] matrix) {
+    for (int i = 0; i < matrix.length; i++) {
+      for (int j = i; j < matrix.length; j++) {
+        if ((matrix[i][j] > 0) && (matrix[j][i] > 0))
+          return false;
+      }
+    }
+    return true;
   }
 
   public static void main(String args[]) {
@@ -132,23 +153,30 @@ public class App {
     h.frameIt("Macierz Sąsiedztwa", false);
     h.breakLine();
 
+    System.out.println("   OZNACZENIE:");
+    System.out.println("      1 - krawędź");
+    System.out.println("      2 - krawędź, która jest mostem");
+    h.breakLine();
+
     h.displayMatrix(matrix);
     h.breakLine();
 
-    Stack<Integer> stack = theFleuryAlgorithm(0, n, matrix);
+    int counter = 1;
+    Vertex start = graph.getVertices().get(0);
+    while (start.getNeighbours().size() == 0)
+      start = graph.getVertices().get(counter++);
 
-    String stackStr = "CYKL EULERA |";
-    stackStr += (" v" + (stack.elementAt(0)+1));
-    for (int i = 1; i < stack.size(); i++)
+    Stack<Integer> stack = theFleuryAlgorithm(start.getNumber()-1, n, matrix);
+
+    if (allEdgesUsed(matrix)) {
+      String stackStr = "CYKL EULERA |";
+      stackStr += (" v" + (stack.elementAt(0)+1));
+      for (int i = 1; i < stack.size(); i++)
       stackStr += (" v" + (stack.elementAt(i)+1));
-
-    h.frameIt(stackStr, true);
-    h.breakLine();
-
-    h.frameIt("Macierz po Fleury'm (powinna być pusta)", false);
-    h.breakLine();
-
-    h.displayMatrix(matrix);
+      h.frameIt(stackStr, true);
+    } else {
+      h.frameIt("Nie znaleziono cyklu Eulera!", true);
+    }
     h.breakLine();
   }
 }
