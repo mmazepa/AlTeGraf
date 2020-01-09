@@ -134,19 +134,27 @@ w ramach przedmiotu Algorytmiczna Teoria Grafów w roku akademickim 2019/2020.
   </tr>
   <tr>
     <td rowspan="1">9</td>
-    <td rowspan="1">14.01.2020</td>
+    <td rowspan="1">07.01.2020</td>
     <td>1</td>
     <td>Algorytm Fleury'ego (szukanie cyklu Eulera).</td>
-    <td>0/5 pkt</td>
-    <td rowspan="1">0/5 pkt</td>
+    <td>5/5 pkt</td>
+    <td rowspan="1">5/5 pkt</td>
+  </tr>
+  <tr>
+    <td rowspan="1">10</td>
+    <td rowspan="1">14.01.2020</td>
+    <td>1</td>
+    <td>Pakiet LEDA lub INNY. Planarność wybranych grafów.</td>
+    <td>0/4 pkt</td>
+    <td rowspan="1">0/4 pkt</td>
   </tr>
   <tr align="right">
     <td colspan="5"><b>OGÓŁEM:</b></td>
-    <td>49/68 pkt</td>
+    <td>54/72 pkt</td>
   </tr>
   <tr align="right">
     <td colspan="5"><b>PROCENT:</b></td>
-    <td>72.06%</td>
+    <td>75.00%</td>
   </tr>
   <tr align="right">
     <td colspan="5"><b>OCENA:</b></td>
