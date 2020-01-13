@@ -13,11 +13,11 @@ public class FileManager {
   public static GraphManager gm = new GraphManager();
   public static Helpers h = new Helpers();
 
-  public File getFileFromResources(String fileName) /*throws IllegalArgumentException*/ {
+  public File getFileFromResources(String fileName) {
     ClassLoader classLoader = getClass().getClassLoader();
     URL resource = classLoader.getResource(fileName);
     if (resource == null)
-      return null; // throw new IllegalArgumentException("Nie znaleziono pliku!");
+      return null;
     else
       return new File(resource.getFile());
   }
