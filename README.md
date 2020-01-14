@@ -149,7 +149,7 @@ w ramach przedmiotu Algorytmiczna Teoria Grafów w roku akademickim 2019/2020.
       Wybrany pakiet: JGraphT.
     </td>
     <td>4/4 pkt</td>
-    <td rowspan="1">0/4 pkt</td>
+    <td rowspan="1">4/4 pkt</td>
   </tr>
   <tr align="right">
     <td colspan="5"><b>OGÓŁEM:</b></td>
