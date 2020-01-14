@@ -104,7 +104,7 @@ public class App {
 
       removeEdge(v, u, matrix);
 
-      System.out.println("   EDGE = (v" + (v+1) + "->v" + (u+1) + ")");
+      System.out.println("   KRAWĘDŹ = {v" + (v+1) + ", v" + (u+1) + "}");
       h.breakLine();
       h.displayMatrix(matrix);
       h.breakLine();
@@ -166,7 +166,6 @@ public class App {
       System.out.println("   Nie wszystkie wierzchołki są stopnia parzystego!");
       h.breakLine();
       h.frameIt("Graf nie posiada cyklu Eulera!", true);
-      h.breakLine();
     } else {
       System.out.println("   Wszystkie wierzchołki są stopnia parzystego!");
       h.breakLine();
@@ -190,20 +189,19 @@ public class App {
       int counter = 1;
       Vertex start = graph.getVertices().get(0);
       while (start.getNeighbours().size() == 0)
-      start = graph.getVertices().get(counter++);
+        start = graph.getVertices().get(counter++);
 
       Stack<Integer> stack = theFleuryAlgorithm(start.getNumber()-1, n, matrix);
 
       if (allEdgesUsed(matrix)) {
         String stackStr = "CYKL EULERA |";
-        stackStr += (" v" + (stack.elementAt(0)+1));
-        for (int i = 1; i < stack.size(); i++)
-        stackStr += (" v" + (stack.elementAt(i)+1));
+        for (int i = 0; i < stack.size(); i++)
+          stackStr += (" v" + (stack.elementAt(i)+1));
         h.frameIt(stackStr, true);
       } else {
-        h.frameIt("Nie znaleziono cyklu Eulera!", true);
+        h.frameIt("Nie znaleziono cyklu Eulera, graf niespójny!", true);
       }
-      h.breakLine();
     }
+    h.breakLine();
   }
 }
