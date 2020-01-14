@@ -134,13 +134,6 @@ w ramach przedmiotu Algorytmiczna Teoria Grafów w roku akademickim 2019/2020.
   </tr>
   <tr>
     <td rowspan="1">9</td>
-<<<<<<< HEAD
-    <td rowspan="1">7.01.2020</td>
-    <td>1</td>
-    <td>Algorytm Fleury'ego (szukanie cyklu Eulera).</td>
-    <td>5/5 pkt</td>
-    <td rowspan="1">0/5 pkt</td>
-=======
     <td rowspan="1">07.01.2020</td>
     <td>1</td>
     <td>Algorytm Fleury'ego (szukanie cyklu Eulera).</td>
@@ -151,33 +144,23 @@ w ramach przedmiotu Algorytmiczna Teoria Grafów w roku akademickim 2019/2020.
     <td rowspan="1">10</td>
     <td rowspan="1">14.01.2020</td>
     <td>1</td>
-    <td>Pakiet LEDA lub INNY. Planarność wybranych grafów.</td>
-    <td>0/4 pkt</td>
-    <td rowspan="1">0/4 pkt</td>
->>>>>>> 56abd3a2a7f6e4f712fac1fdf99c759310445556
-  </tr>
-    <tr>
-    <td rowspan="1">10</td>
-    <td rowspan="1">14.01.2020</td>
-    <td>1</td>
-    <td>Pakiet LEDA, planarność wybranych grafów. </td>
-    <td>0/4 pkt</td>
+    <td>
+      Pakiet LEDA lub INNY. Planarność wybranych grafów.
+      Wybrany pakiet: JGraphT.
+    </td>
+    <td>4/4 pkt</td>
     <td rowspan="1">0/4 pkt</td>
   </tr>
   <tr align="right">
     <td colspan="5"><b>OGÓŁEM:</b></td>
-    <td>54/72 pkt</td>
+    <td>58/72 pkt</td>
   </tr>
   <tr align="right">
     <td colspan="5"><b>PROCENT:</b></td>
-<<<<<<< HEAD
-    <td>68.06%</td>
-=======
-    <td>75.00%</td>
->>>>>>> 56abd3a2a7f6e4f712fac1fdf99c759310445556
+    <td>80.56%</td>
   </tr>
   <tr align="right">
     <td colspan="5"><b>OCENA:</b></td>
-    <td>3.5</td>
+    <td>4.0/4.5</td>
   </tr>
 </table>
