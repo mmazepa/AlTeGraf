@@ -24,21 +24,22 @@ public class App {
   }
 
   public static ArrayList<Edge> theKruskalAlgorithm(Graph graph) {
-    int n = graph.getVertices().size();
-    int vertexSet[] = new int[n];
+    int vSize = graph.getVertices().size();
+    int eSize = graph.getEdges().size();
+    int vertexSet[] = new int[vSize];
     ArrayList<Edge> tree = new ArrayList<Edge>();
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < vSize; i++)
       vertexSet[i] = graph.getVertices().get(i).getNumber();
 
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < eSize; i++) {
       Edge edge = graph.getEdges().get(i);
       int v1 = edge.getVertex1().getNumber();
       int v2 = edge.getVertex2().getNumber();
 
       if (findSet(vertexSet, v1) != findSet(vertexSet, v2)) {
         tree.add(edge);
-        unionSets(vertexSet, n, v1, v2);
+        unionSets(vertexSet, vSize, v1, v2);
       }
     }
 
